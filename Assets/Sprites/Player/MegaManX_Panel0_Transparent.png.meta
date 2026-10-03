@@ -1,0 +1,1679 @@
+fileFormatVersion: 2
+guid: e4cd06f920c0c9b4faa3bee371fe327c
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -2956322574021891851
+    second: MegaManX_Panel0_Transparent_0
+  - first:
+      213: -5068912874557413340
+    second: MegaManX_Panel0_Transparent_1
+  - first:
+      213: -1018961910547101219
+    second: MegaManX_Panel0_Transparent_2
+  - first:
+      213: 7557204611124186379
+    second: MegaManX_Panel0_Transparent_3
+  - first:
+      213: 5944725508431304454
+    second: MegaManX_Panel0_Transparent_4
+  - first:
+      213: -3785207547060395456
+    second: MegaManX_Panel0_Transparent_5
+  - first:
+      213: -8415864272146437752
+    second: MegaManX_Panel0_Transparent_6
+  - first:
+      213: 7564713326646734683
+    second: MegaManX_Panel0_Transparent_7
+  - first:
+      213: 5759490733948645540
+    second: MegaManX_Panel0_Transparent_8
+  - first:
+      213: -351438991817689705
+    second: MegaManX_Panel0_Transparent_9
+  - first:
+      213: 1608408340765640202
+    second: MegaManX_Panel0_Transparent_10
+  - first:
+      213: -8453772199998469392
+    second: MegaManX_Panel0_Transparent_11
+  - first:
+      213: 6154443321439955043
+    second: MegaManX_Panel0_Transparent_12
+  - first:
+      213: 7248311447978631052
+    second: MegaManX_Panel0_Transparent_13
+  - first:
+      213: -1553228641302473054
+    second: MegaManX_Panel0_Transparent_14
+  - first:
+      213: 7654357602961090950
+    second: MegaManX_Panel0_Transparent_15
+  - first:
+      213: -5447839128037504419
+    second: MegaManX_Panel0_Transparent_16
+  - first:
+      213: -3321020035590249481
+    second: MegaManX_Panel0_Transparent_17
+  - first:
+      213: -3474572805261346462
+    second: MegaManX_Panel0_Transparent_18
+  - first:
+      213: -2943376565757808853
+    second: MegaManX_Panel0_Transparent_19
+  - first:
+      213: -4826168575064234
+    second: MegaManX_Panel0_Transparent_20
+  - first:
+      213: -8393627022622211059
+    second: MegaManX_Panel0_Transparent_21
+  - first:
+      213: -4234146995901951776
+    second: MegaManX_Panel0_Transparent_22
+  - first:
+      213: -7222691617852171179
+    second: MegaManX_Panel0_Transparent_23
+  - first:
+      213: 6754643004603033684
+    second: MegaManX_Panel0_Transparent_24
+  - first:
+      213: -3856730752810768458
+    second: MegaManX_Panel0_Transparent_25
+  - first:
+      213: 5426983762444987001
+    second: MegaManX_Panel0_Transparent_26
+  - first:
+      213: 8976947931172085165
+    second: MegaManX_Panel0_Transparent_27
+  - first:
+      213: 7868137605912327519
+    second: MegaManX_Panel0_Transparent_28
+  - first:
+      213: 2981929884218618531
+    second: MegaManX_Panel0_Transparent_29
+  - first:
+      213: 2374703905181274391
+    second: MegaManX_Panel0_Transparent_30
+  - first:
+      213: 1753818618629234080
+    second: MegaManX_Panel0_Transparent_31
+  - first:
+      213: 8237401118513489040
+    second: MegaManX_Panel0_Transparent_32
+  - first:
+      213: -7622370673521342402
+    second: MegaManX_Panel0_Transparent_33
+  - first:
+      213: 556770000461782155
+    second: MegaManX_Panel0_Transparent_34
+  - first:
+      213: 467860715665419875
+    second: MegaManX_Panel0_Transparent_35
+  - first:
+      213: -6341058930316172656
+    second: MegaManX_Panel0_Transparent_36
+  - first:
+      213: -5179974157042817720
+    second: MegaManX_Panel0_Transparent_37
+  - first:
+      213: -5646624144857946086
+    second: MegaManX_Panel0_Transparent_38
+  - first:
+      213: 851903780255095881
+    second: MegaManX_Panel0_Transparent_39
+  - first:
+      213: 7636320234996358573
+    second: MegaManX_Panel0_Transparent_40
+  - first:
+      213: -702605961441689517
+    second: MegaManX_Panel0_Transparent_41
+  - first:
+      213: -2977632533843076594
+    second: MegaManX_Panel0_Transparent_42
+  - first:
+      213: -962008389254493898
+    second: MegaManX_Panel0_Transparent_43
+  - first:
+      213: 6989985981583633525
+    second: MegaManX_Panel0_Transparent_44
+  - first:
+      213: 8418644972643992031
+    second: MegaManX_Panel0_Transparent_45
+  - first:
+      213: -8282046473993398106
+    second: MegaManX_Panel0_Transparent_46
+  - first:
+      213: -3150820992379326163
+    second: MegaManX_Panel0_Transparent_47
+  - first:
+      213: 3093996830494072789
+    second: MegaManX_Panel0_Transparent_48
+  - first:
+      213: 5975646034434076116
+    second: MegaManX_Panel0_Transparent_49
+  - first:
+      213: -5813131174451403654
+    second: MegaManX_Panel0_Transparent_50
+  - first:
+      213: 6205033090076340413
+    second: MegaManX_Panel0_Transparent_51
+  - first:
+      213: 2881908736915299621
+    second: MegaManX_Panel0_Transparent_52
+  - first:
+      213: 6599570493504972173
+    second: MegaManX_Panel0_Transparent_53
+  - first:
+      213: -262643255340215771
+    second: MegaManX_Panel0_Transparent_54
+  - first:
+      213: -4001728657764330861
+    second: MegaManX_Panel0_Transparent_55
+  - first:
+      213: 4734236780598750239
+    second: MegaManX_Panel0_Transparent_56
+  - first:
+      213: -578748793901320642
+    second: MegaManX_Panel0_Transparent_57
+  - first:
+      213: -2033833024592771036
+    second: MegaManX_Panel0_Transparent_58
+  - first:
+      213: 2518936344928341133
+    second: MegaManX_Panel0_Transparent_59
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationMethod: 0
+  spriteTessellationDetail: -1
+  spriteGeometrySubdivision: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: MegaManX_Panel0_Transparent_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 214
+        width: 137
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5f8e4fd384809f6d0800000000000000
+      internalID: -2956322574021891851
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MegaManX_Panel0_Transparent_1
+      rect:
+        serializedVersion: 2
+        x: 136
+        y: 233
+        width: 7
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 428e99ac89a97a9b0800000000000000
+      internalID: -5068912874557413340
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MegaManX_Panel0_Transparent_2
+      rect:
+        serializedVersion: 2
+        x: 142
+        y: 233
+        width: 19
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dd9cf228a8bebd1f0800000000000000
+      internalID: -1018961910547101219
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MegaManX_Panel0_Transparent_3
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 234
+        width: 86
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b0d4005dd8590e860800000000000000
+      internalID: 7557204611124186379
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MegaManX_Panel0_Transparent_4
+      rect:
+        serializedVersion: 2
+        x: 235
+        y: 234
+        width: 23
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 60750497a58ef7250800000000000000
+      internalID: 5944725508431304454
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MegaManX_Panel0_Transparent_5
+      rect:
+        serializedVersion: 2
+        x: 258
+        y: 234
+        width: 16
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 04266547acd387bc0800000000000000
+      internalID: -3785207547060395456
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MegaManX_Panel0_Transparent_6
+      rect:
+        serializedVersion: 2
+        x: 261
+        y: 241
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8896fcc9808d43b80800000000000000
+      internalID: -8415864272146437752
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MegaManX_Panel0_Transparent_7
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 219
+        width: 72
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b5f2176e0b24bf860800000000000000
+      internalID: 7564713326646734683
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MegaManX_Panel0_Transparent_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 155
+        width: 136
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4a0b924be42ddef40800000000000000
+      internalID: 5759490733948645540
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MegaManX_Panel0_Transparent_9
+      rect:
+        serializedVersion: 2
+        x: 29
+        y: 201
+        width: 43
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7953c7459107f1bf0800000000000000
+      internalID: -351438991817689705
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MegaManX_Panel0_Transparent_10
+      rect:
+        serializedVersion: 2
+        x: 69
+        y: 201
+        width: 13
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a068c1d3dd6325610800000000000000
+      internalID: 1608408340765640202
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MegaManX_Panel0_Transparent_11
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 201
+        width: 42
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0fac40f59fa2eaa80800000000000000
+      internalID: -8453772199998469392
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MegaManX_Panel0_Transparent_12
+      rect:
+        serializedVersion: 2
+        x: 132
+        y: 187
+        width: 12
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 36824bcd799f86550800000000000000
+      internalID: 6154443321439955043
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MegaManX_Panel0_Transparent_13
+      rect:
+        serializedVersion: 2
+        x: 142
+        y: 188
+        width: 11
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c8fd926dbdc279460800000000000000
+      internalID: 7248311447978631052
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MegaManX_Panel0_Transparent_14
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 140
+        width: 55
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2a61434b7c2d17ae0800000000000000
+      internalID: -1553228641302473054
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MegaManX_Panel0_Transparent_15
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 156
+        width: 140
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6896e447fadb93a60800000000000000
+      internalID: 7654357602961090950
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MegaManX_Panel0_Transparent_16
+      rect:
+        serializedVersion: 2
+        x: 109
+        y: 140
+        width: 12
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d5ac9db4d236564b0800000000000000
+      internalID: -5447839128037504419
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MegaManX_Panel0_Transparent_17
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 140
+        width: 33
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7f320b68fdd59e1d0800000000000000
+      internalID: -3321020035590249481
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MegaManX_Panel0_Transparent_18
+      rect:
+        serializedVersion: 2
+        x: 151
+        y: 137
+        width: 59
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2693a245176d7cfc0800000000000000
+      internalID: -3474572805261346462
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MegaManX_Panel0_Transparent_19
+      rect:
+        serializedVersion: 2
+        x: 174
+        y: 156
+        width: 64
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b2febcdab960727d0800000000000000
+      internalID: -2943376565757808853
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MegaManX_Panel0_Transparent_20
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 140
+        width: 10
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 657057010aadeeff0800000000000000
+      internalID: -4826168575064234
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MegaManX_Panel0_Transparent_21
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 116
+        width: 103
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d04cb7bb1b8d38b80800000000000000
+      internalID: -8393627022622211059
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MegaManX_Panel0_Transparent_22
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 134
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0e01a7e9db94d35c0800000000000000
+      internalID: -4234146995901951776
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MegaManX_Panel0_Transparent_23
+      rect:
+        serializedVersion: 2
+        x: 62
+        y: 135
+        width: 19
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 55cdab3bd38d3cb90800000000000000
+      internalID: -7222691617852171179
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MegaManX_Panel0_Transparent_24
+      rect:
+        serializedVersion: 2
+        x: 77
+        y: 140
+        width: 33
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 458e0f966005dbd50800000000000000
+      internalID: 6754643004603033684
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MegaManX_Panel0_Transparent_25
+      rect:
+        serializedVersion: 2
+        x: 101
+        y: 117
+        width: 47
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6b7a36c60d32a7ac0800000000000000
+      internalID: -3856730752810768458
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MegaManX_Panel0_Transparent_26
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 140
+        width: 15
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 97aa8528af4805b40800000000000000
+      internalID: 5426983762444987001
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MegaManX_Panel0_Transparent_27
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 95
+        width: 125
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dad90bcd496849c70800000000000000
+      internalID: 8976947931172085165
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MegaManX_Panel0_Transparent_28
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 81
+        width: 10
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f55fb44277d313d60800000000000000
+      internalID: 7868137605912327519
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MegaManX_Panel0_Transparent_29
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 81
+        width: 8
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3a2f8f54e61f16920800000000000000
+      internalID: 2981929884218618531
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MegaManX_Panel0_Transparent_30
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 81
+        width: 12
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 711101bbe94a4f020800000000000000
+      internalID: 2374703905181274391
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MegaManX_Panel0_Transparent_31
+      rect:
+        serializedVersion: 2
+        x: 62
+        y: 79
+        width: 23
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0ad9cd3ddb0d65810800000000000000
+      internalID: 1753818618629234080
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MegaManX_Panel0_Transparent_32
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 79
+        width: 10
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 094e6657ca0215270800000000000000
+      internalID: 8237401118513489040
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MegaManX_Panel0_Transparent_33
+      rect:
+        serializedVersion: 2
+        x: 94
+        y: 81
+        width: 54
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e38c76ae146e73690800000000000000
+      internalID: -7622370673521342402
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MegaManX_Panel0_Transparent_34
+      rect:
+        serializedVersion: 2
+        x: 148
+        y: 80
+        width: 49
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b8c5e139d5b0ab700800000000000000
+      internalID: 556770000461782155
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MegaManX_Panel0_Transparent_35
+      rect:
+        serializedVersion: 2
+        x: 18
+        y: 76
+        width: 23
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 36ee89197dc2e7600800000000000000
+      internalID: 467860715665419875
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MegaManX_Panel0_Transparent_36
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 81
+        width: 23
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 092afaecf780008a0800000000000000
+      internalID: -6341058930316172656
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MegaManX_Panel0_Transparent_37
+      rect:
+        serializedVersion: 2
+        x: 148
+        y: 80
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 84562c7e2f80d18b0800000000000000
+      internalID: -5179974157042817720
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MegaManX_Panel0_Transparent_38
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 73
+        width: 5
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a182991e14923a1b0800000000000000
+      internalID: -5646624144857946086
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MegaManX_Panel0_Transparent_39
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 55
+        width: 54
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 94cdaec79f192db00800000000000000
+      internalID: 851903780255095881
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MegaManX_Panel0_Transparent_40
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 73
+        width: 16
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dadd5167bc8a9f960800000000000000
+      internalID: 7636320234996358573
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MegaManX_Panel0_Transparent_41
+      rect:
+        serializedVersion: 2
+        x: 55
+        y: 72
+        width: 15
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3504233c997df36f0800000000000000
+      internalID: -702605961441689517
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MegaManX_Panel0_Transparent_42
+      rect:
+        serializedVersion: 2
+        x: 71
+        y: 72
+        width: 9
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e0a13a49cf25da6d0800000000000000
+      internalID: -2977632533843076594
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MegaManX_Panel0_Transparent_43
+      rect:
+        serializedVersion: 2
+        x: 75
+        y: 54
+        width: 38
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6394a87877246a2f0800000000000000
+      internalID: -962008389254493898
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MegaManX_Panel0_Transparent_44
+      rect:
+        serializedVersion: 2
+        x: 27
+        y: 38
+        width: 183
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 57ca049373b610160800000000000000
+      internalID: 6989985981583633525
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MegaManX_Panel0_Transparent_45
+      rect:
+        serializedVersion: 2
+        x: 53
+        y: 55
+        width: 12
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fd1c29caff805d470800000000000000
+      internalID: 8418644972643992031
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MegaManX_Panel0_Transparent_46
+      rect:
+        serializedVersion: 2
+        x: 62
+        y: 59
+        width: 15
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6a8d850bc92401d80800000000000000
+      internalID: -8282046473993398106
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MegaManX_Panel0_Transparent_47
+      rect:
+        serializedVersion: 2
+        x: 109
+        y: 58
+        width: 11
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d21f26e40090644d0800000000000000
+      internalID: -3150820992379326163
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MegaManX_Panel0_Transparent_48
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 41
+        width: 9
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5df98c189b510fa20800000000000000
+      internalID: 3093996830494072789
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MegaManX_Panel0_Transparent_49
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 23
+        width: 12
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4dd2ae17862cde250800000000000000
+      internalID: 5975646034434076116
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MegaManX_Panel0_Transparent_50
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 40
+        width: 24
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a7423120ffb935fa0800000000000000
+      internalID: -5813131174451403654
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MegaManX_Panel0_Transparent_51
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 23
+        width: 38
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: db07b8148b4bc1650800000000000000
+      internalID: 6205033090076340413
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MegaManX_Panel0_Transparent_52
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1
+        width: 94
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 52d5eea2ab89ef720800000000000000
+      internalID: 2881908736915299621
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MegaManX_Panel0_Transparent_53
+      rect:
+        serializedVersion: 2
+        x: 39
+        y: 23
+        width: 39
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d856387d562669b50800000000000000
+      internalID: 6599570493504972173
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MegaManX_Panel0_Transparent_54
+      rect:
+        serializedVersion: 2
+        x: 77
+        y: 23
+        width: 52
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5225bcec957ea5cf0800000000000000
+      internalID: -262643255340215771
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MegaManX_Panel0_Transparent_55
+      rect:
+        serializedVersion: 2
+        x: 84
+        y: 2
+        width: 50
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 392d472ecf00778c0800000000000000
+      internalID: -4001728657764330861
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MegaManX_Panel0_Transparent_56
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 21
+        width: 11
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f1c6d26d44363b140800000000000000
+      internalID: 4734236780598750239
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MegaManX_Panel0_Transparent_57
+      rect:
+        serializedVersion: 2
+        x: 138
+        y: 21
+        width: 14
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e36735dc90fd7f7f0800000000000000
+      internalID: -578748793901320642
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MegaManX_Panel0_Transparent_58
+      rect:
+        serializedVersion: 2
+        x: 151
+        y: 21
+        width: 24
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 42880bcc3af56c3e0800000000000000
+      internalID: -2033833024592771036
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MegaManX_Panel0_Transparent_59
+      rect:
+        serializedVersion: 2
+        x: 124
+        y: 0
+        width: 32
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d8c4643824f05f220800000000000000
+      internalID: 2518936344928341133
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      MegaManX_Panel0_Transparent_0: -2956322574021891851
+      MegaManX_Panel0_Transparent_1: -5068912874557413340
+      MegaManX_Panel0_Transparent_10: 1608408340765640202
+      MegaManX_Panel0_Transparent_11: -8453772199998469392
+      MegaManX_Panel0_Transparent_12: 6154443321439955043
+      MegaManX_Panel0_Transparent_13: 7248311447978631052
+      MegaManX_Panel0_Transparent_14: -1553228641302473054
+      MegaManX_Panel0_Transparent_15: 7654357602961090950
+      MegaManX_Panel0_Transparent_16: -5447839128037504419
+      MegaManX_Panel0_Transparent_17: -3321020035590249481
+      MegaManX_Panel0_Transparent_18: -3474572805261346462
+      MegaManX_Panel0_Transparent_19: -2943376565757808853
+      MegaManX_Panel0_Transparent_2: -1018961910547101219
+      MegaManX_Panel0_Transparent_20: -4826168575064234
+      MegaManX_Panel0_Transparent_21: -8393627022622211059
+      MegaManX_Panel0_Transparent_22: -4234146995901951776
+      MegaManX_Panel0_Transparent_23: -7222691617852171179
+      MegaManX_Panel0_Transparent_24: 6754643004603033684
+      MegaManX_Panel0_Transparent_25: -3856730752810768458
+      MegaManX_Panel0_Transparent_26: 5426983762444987001
+      MegaManX_Panel0_Transparent_27: 8976947931172085165
+      MegaManX_Panel0_Transparent_28: 7868137605912327519
+      MegaManX_Panel0_Transparent_29: 2981929884218618531
+      MegaManX_Panel0_Transparent_3: 7557204611124186379
+      MegaManX_Panel0_Transparent_30: 2374703905181274391
+      MegaManX_Panel0_Transparent_31: 1753818618629234080
+      MegaManX_Panel0_Transparent_32: 8237401118513489040
+      MegaManX_Panel0_Transparent_33: -7622370673521342402
+      MegaManX_Panel0_Transparent_34: 556770000461782155
+      MegaManX_Panel0_Transparent_35: 467860715665419875
+      MegaManX_Panel0_Transparent_36: -6341058930316172656
+      MegaManX_Panel0_Transparent_37: -5179974157042817720
+      MegaManX_Panel0_Transparent_38: -5646624144857946086
+      MegaManX_Panel0_Transparent_39: 851903780255095881
+      MegaManX_Panel0_Transparent_4: 5944725508431304454
+      MegaManX_Panel0_Transparent_40: 7636320234996358573
+      MegaManX_Panel0_Transparent_41: -702605961441689517
+      MegaManX_Panel0_Transparent_42: -2977632533843076594
+      MegaManX_Panel0_Transparent_43: -962008389254493898
+      MegaManX_Panel0_Transparent_44: 6989985981583633525
+      MegaManX_Panel0_Transparent_45: 8418644972643992031
+      MegaManX_Panel0_Transparent_46: -8282046473993398106
+      MegaManX_Panel0_Transparent_47: -3150820992379326163
+      MegaManX_Panel0_Transparent_48: 3093996830494072789
+      MegaManX_Panel0_Transparent_49: 5975646034434076116
+      MegaManX_Panel0_Transparent_5: -3785207547060395456
+      MegaManX_Panel0_Transparent_50: -5813131174451403654
+      MegaManX_Panel0_Transparent_51: 6205033090076340413
+      MegaManX_Panel0_Transparent_52: 2881908736915299621
+      MegaManX_Panel0_Transparent_53: 6599570493504972173
+      MegaManX_Panel0_Transparent_54: -262643255340215771
+      MegaManX_Panel0_Transparent_55: -4001728657764330861
+      MegaManX_Panel0_Transparent_56: 4734236780598750239
+      MegaManX_Panel0_Transparent_57: -578748793901320642
+      MegaManX_Panel0_Transparent_58: -2033833024592771036
+      MegaManX_Panel0_Transparent_59: 2518936344928341133
+      MegaManX_Panel0_Transparent_6: -8415864272146437752
+      MegaManX_Panel0_Transparent_7: 7564713326646734683
+      MegaManX_Panel0_Transparent_8: 5759490733948645540
+      MegaManX_Panel0_Transparent_9: -351438991817689705
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
