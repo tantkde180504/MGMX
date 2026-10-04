@@ -47,7 +47,7 @@ namespace MMX.Setup
                 camObj.tag = "MainCamera";
             }
             mainCam.orthographic = true;
-            mainCam.orthographicSize = 6.5f;
+            mainCam.orthographicSize = 4.5f; // Tối ưu tỉ lệ hiển thị chuẩn MMX4 (rõ nét, không bị thu nhỏ)
             // B?u tr?i đêm r?ng r?m công ngh? Web Spider (Dark Emerald Sky)
             mainCam.backgroundColor = new Color(0.04f, 0.11f, 0.07f);
             mainCam.clearFlags = CameraClearFlags.SolidColor;

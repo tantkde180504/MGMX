@@ -2,14 +2,25 @@ using UnityEngine;
 
 namespace MMX.Camera
 {
+    /// <summary>
+    /// Camera Controller chuẩn phong cách Mega Man X4.
+    /// Áp dụng các nguyên tắc tối ưu từ awesome-gamedev-agent-skills:
+    /// - LateUpdate tracking độc lập với framerate (SmoothDamp).
+    /// - Pixel-Perfect Grid Snapping (loại bỏ rung giật sub-pixel và hiện tượng mờ khi camera di chuyển).
+    /// - Giới hạn biên màn chơi (Clamping to stage bounds & boss arena).
+    /// </summary>
     public class MMXCameraController : MonoBehaviour
     {
         [Header("Target Tracking")]
         [SerializeField] private Transform target;
         [SerializeField] private Vector3 offset = new Vector3(0f, 1f, -10f);
-        [SerializeField] private float smoothTime = 0.18f;
+        [SerializeField] private float smoothTime = 0.12f;
 
-        [Header("Stage Bounds (Gi?i h?n m�n ch�i th�?ng)")]
+        [Header("Pixel Perfect Snapping (Khử mờ sub-pixel)")]
+        [SerializeField] private bool snapToPixelGrid = true;
+        [SerializeField] private float pixelsPerUnit = 32f;
+
+        [Header("Stage Bounds (Giới hạn màn chơi)")]
         [SerializeField] private bool clampToStage = true;
         [SerializeField] private Vector2 stageMin = new Vector2(0f, -5f);
         [SerializeField] private Vector2 stageMax = new Vector2(220f, 25f);
@@ -34,7 +45,7 @@ namespace MMX.Camera
 
             Vector3 targetPosition = target.position + offset;
 
-            // �p d?ng gi?i h?n ph?ng Boss ho?c gi?i h?n Stage
+            // Áp dụng giới hạn phòng Boss hoặc giới hạn Stage
             if (isLockedToBossRoom)
             {
                 targetPosition.x = Mathf.Clamp(targetPosition.x, bossRoomMin.x, bossRoomMax.x);
@@ -46,7 +57,17 @@ namespace MMX.Camera
                 targetPosition.y = Mathf.Clamp(targetPosition.y, stageMin.y, stageMax.y);
             }
 
-            transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref currentVelocity, smoothTime);
+            Vector3 nextPos = Vector3.SmoothDamp(transform.position, targetPosition, ref currentVelocity, smoothTime);
+
+            // Tối ưu Pixel-Perfect: căn chỉnh vị trí camera về bội số của pixel để tránh làm mờ sprite pixel-art
+            if (snapToPixelGrid && pixelsPerUnit > 0f)
+            {
+                float unitPerPixel = 1f / pixelsPerUnit;
+                nextPos.x = Mathf.Round(nextPos.x / unitPerPixel) * unitPerPixel;
+                nextPos.y = Mathf.Round(nextPos.y / unitPerPixel) * unitPerPixel;
+            }
+
+            transform.position = nextPos;
         }
 
         public void LockToBossRoom(Vector2 minBounds, Vector2 maxBounds)
