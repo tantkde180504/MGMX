@@ -10,12 +10,12 @@ using MMX.UI;
 namespace MMX.Setup
 {
     /// <summary>
-    /// Script ti?n Ìch t? ?ng x‚y d?ng to‡n b? M‡n chıi Web Spider (Jungle Stage) chu?n quy mÙ Mega Man X4 trong Unity.
-    /// CÛ th? nh?n chu?t ph?i ch?n ""Build MMX4 Demo Scene"" trong Editor ho?c script s? t? ch?y khi b?t ?u Play n?u scene tr?ng.
+    /// Script ti?n √≠ch t? ƒë?ng x√¢y d?ng to√†n b? M√†n ch∆°i Web Spider (Jungle Stage) chu?n quy m√¥ Mega Man X4 trong Unity.
+    /// C√≥ th? nh?n chu?t ph?i ch?n ""Build MMX4 Demo Scene"" trong Editor ho?c script s? t? ch?y khi b?t ƒë?u Play n?u scene tr?ng.
     /// </summary>
     public class MMXDemoSetup : MonoBehaviour
     {
-        [Header("T? ?ng x‚y d?ng khi b?t ?u Play n?u ch˝a cÛ g?")]
+        [Header("T? ƒë?ng x√¢y d?ng khi b?t ƒë?u Play n?u ch∆∞a c√≥ g?")]
         [SerializeField] private bool autoBuildOnPlay = true;
 
         private void Start()
@@ -32,13 +32,13 @@ namespace MMX.Setup
         [ContextMenu("Build MMX4 Demo Scene")]
         public void BuildFullDemoStage()
         {
-            // 1. D?n d?p c·c ?i t˝?ng demo c? n?u cÛ
+            // 1. D?n d?p c√°c ƒë?i t∆∞?ng demo c? n?u c√≥
             GameObject existingDemo = GameObject.Find("MMX_Demo_Environment");
             if (existingDemo != null) DestroyImmediate(existingDemo);
 
             GameObject root = new GameObject("MMX_Demo_Environment");
 
-            // 2. T?o Camera chu?n m‡n h?nh cu?n MMX
+            // 2. T?o Camera chu?n m√†n h?nh cu?n MMX
             UnityEngine.Camera mainCam = UnityEngine.Camera.main;
             if (mainCam == null)
             {
@@ -48,7 +48,7 @@ namespace MMX.Setup
             }
             mainCam.orthographic = true;
             mainCam.orthographicSize = 6.5f;
-            // B?u tr?i Ím r?ng r?m cÙng ngh? Web Spider (Dark Emerald Sky)
+            // B?u tr?i ƒë√™m r?ng r?m c√¥ng ngh? Web Spider (Dark Emerald Sky)
             mainCam.backgroundColor = new Color(0.04f, 0.11f, 0.07f);
             mainCam.clearFlags = CameraClearFlags.SolidColor;
 
@@ -56,75 +56,75 @@ namespace MMX.Setup
             if (camController == null) camController = mainCam.gameObject.AddComponent<MMXCameraController>();
             camController.SetStageBounds(new Vector2(0f, -4f), new Vector2(220f, 22f));
 
-            // B?ng m‡u r?ng r?m Web Spider (Jungle Palette)
-            Color barkColor = new Color(0.32f, 0.20f, 0.12f);       // M‡u th‚n g? ?i th?
-            Color foliageColor = new Color(0.12f, 0.42f, 0.22f);    // M‡u t·n l· r?ng r?m
-            Color platformWood = new Color(0.40f, 0.26f, 0.16f);    // M‡u c‡nh c‚y / b? ?
-            Color spiderLairColor = new Color(0.18f, 0.25f, 0.20f); // M‡u hang ? nh?n
+            // B?ng m√†u r?ng r?m Web Spider (Jungle Palette)
+            Color barkColor = new Color(0.32f, 0.20f, 0.12f);       // M√†u th√¢n g? ƒë?i th?
+            Color foliageColor = new Color(0.12f, 0.42f, 0.22f);    // M√†u t√°n l√° r?ng r?m
+            Color platformWood = new Color(0.40f, 0.26f, 0.16f);    // M√†u c√†nh c√¢y / b? ƒë?
+            Color spiderLairColor = new Color(0.18f, 0.25f, 0.20f); // M√†u hang ? nh?n
 
-            // 3. X¬Y D?NG TO¿N B? B?N –? R?NG R?M (5 KHU V?C)
+            // 3. X√ÇY D?NG TO√ÄN B? B?N ƒê? R?NG R?M (5 KHU V?C)
             Transform terrainFolder = new GameObject("Terrain_Jungle").transform;
             terrainFolder.SetParent(root.transform);
 
             // =========================================================================
-            // KHU V?C 1: B?A R?NG R?M & B?C THANG T¡N C¬Y (X: -5 ?n 45)
+            // KHU V?C 1: B?A R?NG R?M & B?C THANG T√ÅN C√ÇY (X: -5 ƒë?n 45)
             // =========================================================================
-            // V·ch th‚n c‚y cao bÍn tr·i c˘ng ? t?p leo t˝?ng (Wall Kick)
+            // V√°ch th√¢n c√¢y cao b√™n tr√°i c√πng ƒë? t?p leo t∆∞?ng (Wall Kick)
             CreatePlatform(terrainFolder, "Trunk_Left_Boundary", new Vector2(-4.5f, 7f), new Vector2(2.5f, 20f), barkColor);
-            // M?t ?t b?a r?ng
+            // M?t ƒë?t b?a r?ng
             CreatePlatform(terrainFolder, "Ground_Section_1", new Vector2(20f, -2.5f), new Vector2(48f, 1.5f), foliageColor);
-            // C·c c‡nh c‚y b? ? cao d?n ? l‡m quen nh?y & dash
+            // C√°c c√†nh c√¢y b? ƒë? cao d?n ƒë? l√†m quen nh?y & dash
             CreatePlatform(terrainFolder, "Branch_Step_1", new Vector2(10f, 0.5f), new Vector2(7f, 0.8f), platformWood);
             CreatePlatform(terrainFolder, "Branch_Step_2", new Vector2(21f, 3.0f), new Vector2(7f, 0.8f), platformWood);
             CreatePlatform(terrainFolder, "Branch_Step_3", new Vector2(33f, 1.2f), new Vector2(6f, 0.8f), platformWood);
-            // Th‚n c‚y d?c gi?a ˝?ng th? leo trËo
+            // Th√¢n c√¢y d?c gi?a ƒë∆∞?ng th? leo tr√®o
             CreatePlatform(terrainFolder, "Tree_Trunk_Mid_1", new Vector2(28f, 7.0f), new Vector2(1.8f, 9f), barkColor);
 
             // =========================================================================
-            // KHU V?C 2: V?C S¬U & T¡N C¬Y C? TH? TR N CAO (X: 45 ?n 95)
-            // Th? th·ch Dash-Jump qua h? t? th?n & bÌ m?t b?nh m·u trÍn cao
+            // KHU V?C 2: V?C S√ÇU & T√ÅN C√ÇY C? TH? TR√äN CAO (X: 45 ƒë?n 95)
+            // Th? th√°ch Dash-Jump qua h? t? th?n & b√≠ m?t b?nh m√°u tr√™n cao
             // =========================================================================
-            // B? ? v˝?t v?c 1 (–?i h?i Dash-Jump ? qua n?u khÙng rıi xu?ng ·y)
+            // B? ƒë? v∆∞?t v?c 1 (ƒê?i h?i Dash-Jump ƒë? qua n?u kh√¥ng r∆°i xu?ng ƒë√°y)
             CreatePlatform(terrainFolder, "Canopy_Bridge_1", new Vector2(58f, 0.2f), new Vector2(11f, 1.0f), platformWood);
-            // –·y v?c (cÛ r? c‚y bÍn d˝?i n?u ng˝?i chıi rıi xu?ng)
+            // ƒê√°y v?c (c√≥ r? c√¢y b√™n d∆∞?i n?u ng∆∞?i ch∆°i r∆°i xu?ng)
             CreatePlatform(terrainFolder, "Chasm_Pit_Floor", new Vector2(68f, -5.5f), new Vector2(35f, 1.5f), new Color(0.15f, 0.1f, 0.08f));
-            // T·n c‚y c? th? t?ng cao nh?t (Gi?u b?nh h?i m·u)
+            // T√°n c√¢y c? th? t?ng cao nh?t (Gi?u b?nh h?i m√°u)
             CreatePlatform(terrainFolder, "High_Secret_Canopy", new Vector2(73f, 5.0f), new Vector2(12f, 1.0f), platformWood);
-            // C‡nh c‚y ti?p n?i
+            // C√†nh c√¢y ti?p n?i
             CreatePlatform(terrainFolder, "Canopy_Bridge_2", new Vector2(87f, 1.8f), new Vector2(9f, 1.0f), platformWood);
 
             // =========================================================================
-            // KHU V?C 3: TH¡P TH¬N C¬Y –?I TH? R?NG (X: 95 ?n 135)
-            // –o?n leo th·p d?ng ?ng kinh i?n c?a Web Spider: ?i h?i Wall Kick liÍn t?c!
+            // KHU V?C 3: TH√ÅP TH√ÇN C√ÇY ƒê?I TH? R?NG (X: 95 ƒë?n 135)
+            // ƒêo?n leo th√°p d?ng ƒë?ng kinh ƒëi?n c?a Web Spider: ƒë?i h?i Wall Kick li√™n t?c!
             // =========================================================================
-            // M?t ?t trong l?ng c‚y
+            // M?t ƒë?t trong l?ng c√¢y
             CreatePlatform(terrainFolder, "Hollow_Tree_Floor", new Vector2(115f, -2.5f), new Vector2(38f, 1.5f), barkColor);
-            // V·ch th‚n c‚y bÍn tr·i (cao t?i Y = 22)
+            // V√°ch th√¢n c√¢y b√™n tr√°i (cao t?i Y = 22)
             CreatePlatform(terrainFolder, "Great_Trunk_Wall_Left", new Vector2(96f, 9.5f), new Vector2(2.5f, 24f), barkColor);
-            // V·ch th‚n c‚y bÍn ph?i (cao t?i Y = 22)
+            // V√°ch th√¢n c√¢y b√™n ph?i (cao t?i Y = 22)
             CreatePlatform(terrainFolder, "Great_Trunk_Wall_Right", new Vector2(134f, 9.5f), new Vector2(2.5f, 24f), barkColor);
-            // B?c thang r? c‚y zig-zag bÍn trong th‚n c‚y r?ng
+            // B?c thang r? c√¢y zig-zag b√™n trong th√¢n c√¢y r?ng
             CreatePlatform(terrainFolder, "Trunk_Shelf_1", new Vector2(104f, 2.5f), new Vector2(9f, 0.8f), platformWood);
             CreatePlatform(terrainFolder, "Trunk_Shelf_2", new Vector2(126f, 6.8f), new Vector2(9f, 0.8f), platformWood);
             CreatePlatform(terrainFolder, "Trunk_Shelf_3", new Vector2(105f, 11.2f), new Vector2(9f, 0.8f), platformWood);
             CreatePlatform(terrainFolder, "Trunk_Shelf_4", new Vector2(125f, 15.5f), new Vector2(9f, 0.8f), platformWood);
-            // C?u g? trÍn ?nh ng?n c‚y tho·t ra ngo‡i
+            // C?u g? tr√™n ƒë?nh ng?n c√¢y tho√°t ra ngo√†i
             CreatePlatform(terrainFolder, "Tree_Crown_Exit_Bridge", new Vector2(115f, 19.5f), new Vector2(36f, 1.0f), foliageColor);
 
             // =========================================================================
-            // KHU V?C 4: R?NG S¬U TR›?C C?NG TRŸM (X: 135 ?n 168)
-            // H? ? cao t? ng?n c‚y xu?ng ti?n ?n c?a ph?ng Boss
+            // KHU V?C 4: R?NG S√ÇU TR∆Ø?C C?NG TR√ôM (X: 135 ƒë?n 168)
+            // H? ƒë? cao t? ng?n c√¢y xu?ng ti?n ƒë?n c?a ph?ng Boss
             // =========================================================================
             CreatePlatform(terrainFolder, "Descent_Branch_1", new Vector2(144f, 14.0f), new Vector2(11f, 1.0f), platformWood);
             CreatePlatform(terrainFolder, "Descent_Branch_2", new Vector2(154f, 6.5f), new Vector2(10f, 1.0f), platformWood);
             CreatePlatform(terrainFolder, "Outpost_Ground", new Vector2(162f, -2.5f), new Vector2(16f, 1.5f), foliageColor);
-            // B?c t˝?ng ng„n c?ng Boss
+            // B?c t∆∞?ng ngƒÉn c?ng Boss
             CreatePlatform(terrainFolder, "Boss_Gate_Wall_Top", new Vector2(168f, 8.5f), new Vector2(2.5f, 11f), barkColor);
             CreatePlatform(terrainFolder, "Boss_Gate_Wall_Bottom", new Vector2(168f, -2.5f), new Vector2(2.5f, 1.5f), barkColor);
 
             // =========================================================================
-            // KHU V?C 5: –?U TR›?NG TRŸM WEB SPIDER (X: 170 ?n 218)
-            // L?ng c‚y ?i th? gi„ng tı nh?n kh?ng l?, hai bÍn v·ch t˝?ng g? cao ? leo trËo
+            // KHU V?C 5: ƒê?U TR∆Ø?NG TR√ôM WEB SPIDER (X: 170 ƒë?n 218)
+            // L?ng c√¢y ƒë?i th? giƒÉng t∆° nh?n kh?ng l?, hai b√™n v√°ch t∆∞?ng g? cao ƒë? leo tr√®o
             // =========================================================================
             Transform bossArenaFolder = new GameObject("Boss_Arena_SpiderLair").transform;
             bossArenaFolder.SetParent(root.transform);
@@ -132,7 +132,7 @@ namespace MMX.Setup
             CreatePlatform(bossArenaFolder, "Spider_Lair_Ceiling", new Vector2(193f, 15.5f), new Vector2(48f, 2.0f), barkColor);
             CreatePlatform(bossArenaFolder, "Spider_Lair_RightWall", new Vector2(217f, 6.5f), new Vector2(2.5f, 20f), barkColor);
 
-            // Tı nh?n trang trÌ trÍn tr?n ?u tr˝?ng
+            // T∆° nh?n trang tr√≠ tr√™n tr?n ƒë?u tr∆∞?ng
             CreateWebDecoration(bossArenaFolder, new Vector3(180f, 14f, 0f), new Vector2(10f, 1.5f));
             CreateWebDecoration(bossArenaFolder, new Vector3(205f, 14f, 0f), new Vector2(10f, 1.5f));
 
@@ -147,7 +147,7 @@ namespace MMX.Setup
             doorMesh.transform.SetParent(doorObj.transform);
             doorMesh.transform.localPosition = Vector3.zero;
             SpriteRenderer doorSR = doorMesh.AddComponent<SpriteRenderer>();
-            doorSR.sprite = CreateSimpleSprite(new Color(0.95f, 0.8f, 0.15f)); // C?a v‡ng MMX
+            doorSR.sprite = CreateSimpleSprite(new Color(0.95f, 0.8f, 0.15f)); // C?a v√†ng MMX
             doorSR.color = new Color(0.95f, 0.8f, 0.15f);
             doorMesh.transform.localScale = new Vector3(0.7f, 4.5f, 1f);
 
@@ -163,6 +163,18 @@ namespace MMX.Setup
             player.transform.SetParent(root.transform);
             player.transform.position = new Vector3(0f, 0f, 0f);
 
+            // 1. Th√™m components physics, combat v√† controller cho Player tr∆∞·ªõc
+            Rigidbody2D pRb = player.AddComponent<Rigidbody2D>();
+            BoxCollider2D pCol = player.AddComponent<BoxCollider2D>();
+            pCol.size = new Vector2(0.85f, 1.6f);
+            pCol.offset = new Vector2(0f, 0.8f);
+
+            HealthSystem pHealth = player.AddComponent<HealthSystem>();
+            DamageFlash pFlash = player.AddComponent<DamageFlash>();
+            PlayerController2D pController = player.AddComponent<PlayerController2D>();
+            PlayerCombat pCombat = player.AddComponent<PlayerCombat>();
+
+            // 2. T·∫°o ƒë·ªëi t∆∞·ª£ng hi·ªÉn th·ªã Visual ch·ª©a SpriteRenderer v√† PlayerSpriteAnimator
             GameObject pVisual = new GameObject("Visual");
             pVisual.transform.SetParent(player.transform);
             pVisual.transform.localPosition = Vector3.zero;
@@ -183,25 +195,15 @@ namespace MMX.Setup
             PlayerSpriteAnimator pAnim = pVisual.AddComponent<PlayerSpriteAnimator>();
             pAnim.LoadSpritesFromResourcesIfEmpty();
 
-            BoxCollider2D pCol = player.AddComponent<BoxCollider2D>();
-            pCol.size = new Vector2(0.85f, 1.6f);
-            pCol.offset = new Vector2(0f, 0.8f);
-            Rigidbody2D pRb = player.AddComponent<Rigidbody2D>();
-
-            HealthSystem pHealth = player.AddComponent<HealthSystem>();
-            DamageFlash pFlash = player.AddComponent<DamageFlash>();
-            PlayerController2D pController = player.AddComponent<PlayerController2D>();
-            PlayerCombat pCombat = player.AddComponent<PlayerCombat>();
-
             camController.SetTarget(player.transform);
 
             // =========================================================================
-            // 6. PH¬N B? K? –?CH R?NG R?M (ENEMIES)
+            // 6. PH√ÇN B? K? ƒê?CH R?NG R?M (ENEMIES)
             // =========================================================================
             Transform enemiesFolder = new GameObject("Enemies_Jungle").transform;
             enemiesFolder.SetParent(root.transform);
 
-            // Qu·i b? trÍn m?t ?t (Spike Crawlers)
+            // Qu√°i b? tr√™n m?t ƒë?t (Spike Crawlers)
             CreatePatrolEnemy(enemiesFolder, new Vector3(14f, -1.5f, 0f));
             CreatePatrolEnemy(enemiesFolder, new Vector3(32f, -1.5f, 0f));
             CreatePatrolEnemy(enemiesFolder, new Vector3(58f, 1.0f, 0f));
@@ -209,11 +211,11 @@ namespace MMX.Setup
             CreatePatrolEnemy(enemiesFolder, new Vector3(126f, 7.5f, 0f));
             CreatePatrolEnemy(enemiesFolder, new Vector3(160f, -1.5f, 0f));
 
-            // Qu·i ong bay l˝?n trÍn cao (Flying Hornets)
+            // Qu√°i ong bay l∆∞?n tr√™n cao (Flying Hornets)
             CreateFlyingHornet(enemiesFolder, new Vector3(22f, 4.5f, 0f));
-            CreateFlyingHornet(enemiesFolder, new Vector3(52f, 3.5f, 0f)); // Bay ngay trÍn h? v?c
-            CreateFlyingHornet(enemiesFolder, new Vector3(76f, 7.5f, 0f)); // Bay b?o v? b?nh h?i m·u
-            CreateFlyingHornet(enemiesFolder, new Vector3(112f, 13.0f, 0f)); // Trong th‚n c‚y ?i th?
+            CreateFlyingHornet(enemiesFolder, new Vector3(52f, 3.5f, 0f)); // Bay ngay tr√™n h? v?c
+            CreateFlyingHornet(enemiesFolder, new Vector3(76f, 7.5f, 0f)); // Bay b?o v? b?nh h?i m√°u
+            CreateFlyingHornet(enemiesFolder, new Vector3(112f, 13.0f, 0f)); // Trong th√¢n c√¢y ƒë?i th?
             CreateFlyingHornet(enemiesFolder, new Vector3(148f, 8.5f, 0f));
 
             // =========================================================================
@@ -221,11 +223,11 @@ namespace MMX.Setup
             // =========================================================================
             Transform itemsFolder = new GameObject("Pickups").transform;
             itemsFolder.SetParent(root.transform);
-            CreateHealthCapsule(itemsFolder, new Vector3(73f, 6.2f, 0f)); // B?nh m·u gi?u trÍn t·n c‚y cao!
-            CreateHealthCapsule(itemsFolder, new Vector3(105f, 12.4f, 0f)); // B?nh m·u trong th‚n c‚y ?i th?
+            CreateHealthCapsule(itemsFolder, new Vector3(73f, 6.2f, 0f)); // B?nh m√°u gi?u tr√™n t√°n c√¢y cao!
+            CreateHealthCapsule(itemsFolder, new Vector3(105f, 12.4f, 0f)); // B?nh m√°u trong th√¢n c√¢y ƒë?i th?
 
             // =========================================================================
-            // 8. T?O TRŸM WEB SPIDER (JUNGLE SOVEREIGN)
+            // 8. T?O TR√ôM WEB SPIDER (JUNGLE SOVEREIGN)
             // =========================================================================
             GameObject bossObj = new GameObject("Boss_WebSpider");
             bossObj.tag = "Boss";
@@ -236,11 +238,11 @@ namespace MMX.Setup
             bVisual.transform.SetParent(bossObj.transform);
             bVisual.transform.localPosition = Vector3.zero;
             SpriteRenderer bSR = bVisual.AddComponent<SpriteRenderer>();
-            // Gi·p nh?n xanh l?c s?m sÈt pha tÌm ?c tr˝ng c?a Web Spider
+            // Gi√°p nh?n xanh l?c s?m s√©t pha t√≠m ƒë?c tr∆∞ng c?a Web Spider
             bSR.sprite = CreateSimpleSprite(new Color(0.12f, 0.58f, 0.35f));
             bVisual.transform.localScale = new Vector3(2.5f, 2.8f, 1f);
 
-            // M?t nh?n ph·t s·ng v‡ng r?c
+            // M?t nh?n ph√°t s√°ng v√†ng r?c
             GameObject bEyes = new GameObject("Spider_Eyes");
             bEyes.transform.SetParent(bVisual.transform);
             bEyes.transform.localPosition = new Vector3(-0.25f, 0.2f, 0f);
@@ -257,7 +259,7 @@ namespace MMX.Setup
             BossController bossController = bossObj.AddComponent<BossController>();
 
             // =========================================================================
-            // 9. T?O GIAO DI?N M¡U (HUD CANVAS)
+            // 9. T?O GIAO DI?N M√ÅU (HUD CANVAS)
             // =========================================================================
             GameObject canvasObj = new GameObject("MMX_HUD_Canvas");
             canvasObj.transform.SetParent(root.transform);
@@ -282,10 +284,10 @@ namespace MMX.Setup
             trigCol.size = new Vector2(2f, 5f);
 
             BossRoomTrigger roomTrigger = triggerObj.AddComponent<BossRoomTrigger>();
-            // KhÛa camera c? ?nh v‡o ?u tr˝?ng Web Spider t?i (193, 4.5)
+            // Kh√≥a camera c? ƒë?nh v√†o ƒë?u tr∆∞?ng Web Spider t?i (193, 4.5)
             roomTrigger.Initialize(bossController, bossDoor, camController, bossHealthBar, new Vector2(193f, 4.5f), new Vector2(193f, 4.5f));
 
-            Debug.Log("<color=green>[MMX4 Jungle Stage]</color> –? t?o th‡nh cÙng B?n ? R?ng r?m & Tr˘m Web Spider ho‡n ch?nh!");
+            Debug.Log("<color=green>[MMX4 Jungle Stage]</color> ƒê? t?o th√†nh c√¥ng B?n ƒë? R?ng r?m & Tr√πm Web Spider ho√†n ch?nh!");
         }
 
         private void CreatePlatform(Transform parent, string name, Vector2 pos, Vector2 size, Color color)
@@ -322,7 +324,7 @@ namespace MMX.Setup
             enemy.transform.position = pos;
 
             SpriteRenderer sr = enemy.AddComponent<SpriteRenderer>();
-            sr.sprite = CreateSimpleSprite(new Color(0.75f, 0.25f, 0.2f)); // B? gi·p ? cam
+            sr.sprite = CreateSimpleSprite(new Color(0.75f, 0.25f, 0.2f)); // B? gi√°p ƒë? cam
             enemy.transform.localScale = new Vector3(1.2f, 1.2f, 1f);
 
             BoxCollider2D col = enemy.AddComponent<BoxCollider2D>();
@@ -344,7 +346,7 @@ namespace MMX.Setup
             hornet.transform.position = pos;
 
             SpriteRenderer sr = hornet.AddComponent<SpriteRenderer>();
-            sr.sprite = CreateSimpleSprite(new Color(0.95f, 0.8f, 0.15f)); // Ong m·y v‡ng s?c en
+            sr.sprite = CreateSimpleSprite(new Color(0.95f, 0.8f, 0.15f)); // Ong m√°y v√†ng s?c ƒëen
             hornet.transform.localScale = new Vector3(1.1f, 0.9f, 1f);
 
             CircleCollider2D col = hornet.AddComponent<CircleCollider2D>();
@@ -364,7 +366,7 @@ namespace MMX.Setup
             capsule.transform.position = pos;
 
             SpriteRenderer sr = capsule.AddComponent<SpriteRenderer>();
-            sr.sprite = CreateSimpleSprite(new Color(0.2f, 0.95f, 0.3f)); // ViÍn n„ng l˝?ng xanh l?c MMX
+            sr.sprite = CreateSimpleSprite(new Color(0.2f, 0.95f, 0.3f)); // Vi√™n nƒÉng l∆∞?ng xanh l?c MMX
             capsule.transform.localScale = new Vector3(0.8f, 1.0f, 1f);
 
             BoxCollider2D col = capsule.AddComponent<BoxCollider2D>();
