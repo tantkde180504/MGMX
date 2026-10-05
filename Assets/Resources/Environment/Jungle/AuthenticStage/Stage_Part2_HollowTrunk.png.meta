@@ -95,23 +95,6 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  spriteSheet:
-    serializedVersion: 2
-    sprites: []
-    outline: []
-    customData: 
-    physicsShape: []
-    bones: []
-    spriteID: 6b54800115070a503abff041a2698a46
-    internalID: 0
-    vertices: []
-    indices: 
-    edges: []
-    weights: []
-    secondaryTextures: []
-    nameFileIdTable: {}
-  mipmapLimitGroupName: 
-  pSDRemoveMatte: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 

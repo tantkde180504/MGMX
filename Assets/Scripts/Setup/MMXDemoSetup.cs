@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using MMX.Core;
@@ -11,7 +12,17 @@ namespace MMX.Setup
 {
     /// <summary>
     /// Xây dựng hoàn chỉnh bản đồ Web Spider (Jungle Stage - Mega Man X4) trực tiếp từ bộ dữ liệu trích xuất gốc (spriters-resource.com).
-    /// Loại bỏ hoàn toàn map demo hộp chữ nhật cũ, sử dụng 100% hình ảnh map gốc kết hợp hệ thống vật lý và Parallax đa tầng.
+    /// Chuẩn pixel art 1x gốc PS1, Point filter sắc nét 100%, không bị mờ/nhoè (32 PPU đồng bộ toàn bộ nhân vật & màn chơi).
+    /// Kết cấu màn chơi chính xác 100% theo playthrough Mega Man X4:
+    /// - Area 1:
+    ///   + Part 1: Rừng tán cây trên cao (Canopy Surface Run)
+    ///   + Part 2: Thân cây rỗng khổng lồ rơi xuống (Hollow Trunk Shaft) & Phòng bí mật Chân Capsule (Dr. Light Foot Parts)
+    ///   + Part 3: Vượt sông thác nước cuộn chảy (Waterfall River Crossing) & Cổng dịch chuyển sang Area 2
+    /// - Area 2:
+    ///   + Part 4: Rừng sâu gốc cây đại thụ (Deep Jungle Cut Stumps)
+    ///   + Part 5: Leo trèo thân cây nhện khổng lồ (Spider Trees & Cocoons)
+    ///   + Part 6: Tiền đồn kim loại dẫn vào hang nhện (Industrial Cavern Outpost Approach)
+    ///   + Part 7: Cửa Shutter Gate & Đấu trường Trùm Web Spider (Boss Arena)
     /// </summary>
     public class MMXDemoSetup : MonoBehaviour
     {
@@ -38,12 +49,14 @@ namespace MMX.Setup
 
             GameObject root = new GameObject("MMX_Demo_Environment");
 
-            // 2. Tải toàn bộ 5 phần bản đồ gốc (Authentic Stage Tracks từ file Spriters Resource HD)
+            // 2. Tải toàn bộ 7 phần bản đồ gốc từ Spriters Resource (Authentic Stage Tracks)
             Sprite sPart1Canopy = Resources.Load<Sprite>("Environment/Jungle/AuthenticStage/Stage_Part1_Canopy");
             Sprite sPart2Trunk = Resources.Load<Sprite>("Environment/Jungle/AuthenticStage/Stage_Part2_HollowTrunk");
             Sprite sPart3River = Resources.Load<Sprite>("Environment/Jungle/AuthenticStage/Stage_Part3_WaterfallRiver");
-            Sprite sPart4Corridor = Resources.Load<Sprite>("Environment/Jungle/AuthenticStage/Stage_Part4_BossCorridor");
-            Sprite sPart5Arena = Resources.Load<Sprite>("Environment/Jungle/AuthenticStage/Stage_Part5_BossArena");
+            Sprite sPart4Stumps = Resources.Load<Sprite>("Environment/Jungle/AuthenticStage/Stage_Part4_DeepJungleStumps");
+            Sprite sPart5SpiderTrees = Resources.Load<Sprite>("Environment/Jungle/AuthenticStage/Stage_Part5_SpiderTrees");
+            Sprite sPart6Cavern = Resources.Load<Sprite>("Environment/Jungle/AuthenticStage/Stage_Part6_CavernApproach");
+            Sprite sPart7Arena = Resources.Load<Sprite>("Environment/Jungle/AuthenticStage/Stage_Part7_BossArena");
 
             // Tải Backgrounds & Chi tiết trang trí
             Sprite sSky = Resources.Load<Sprite>("Environment/Jungle/Backgrounds/Jungle_Sky_Clouds");
@@ -51,10 +64,11 @@ namespace MMX.Setup
             Sprite sWaterfall = Resources.Load<Sprite>("Environment/Jungle/Backgrounds/Jungle_Waterfall_Background");
             Sprite sWaterCliff = Resources.Load<Sprite>("Environment/Jungle/Backgrounds/Jungle_Waterfall_Cliff");
             Sprite sDarkTrunk = Resources.Load<Sprite>("Environment/Jungle/Backgrounds/Jungle_Dark_Trunk_Backdrop");
+            Sprite sDeepCanopy = Resources.Load<Sprite>("Environment/Jungle/Backgrounds/Jungle_Area2_DeepCanopy");
 
             Sprite sGate = Resources.Load<Sprite>("Environment/Jungle/Terrain/Jungle_Boss_Gate_Shutter");
             Sprite sWeb = Resources.Load<Sprite>("Environment/Jungle/Terrain/Jungle_Spider_Web");
-            Sprite sVines = Resources.Load<Sprite>("Environment/Jungle/Terrain/Jungle_Hanging_Vines");
+            Sprite sBreakableTrunk = Resources.Load<Sprite>("Environment/Jungle/Terrain/Jungle_Breakable_Trunk");
 
             // 3. Cấu hình Camera chuẩn MMX4
             UnityEngine.Camera mainCam = UnityEngine.Camera.main;
@@ -65,14 +79,14 @@ namespace MMX.Setup
                 camObj.tag = "MainCamera";
             }
             mainCam.orthographic = true;
-            mainCam.orthographicSize = 4.5f; // Tỉ lệ hiển thị chuẩn pixel-perfect MMX4
-            mainCam.backgroundColor = new Color(0.18f, 0.36f, 0.48f); // Bầu trời rừng nhiệt đới
+            mainCam.orthographicSize = 4.5f; // Tỉ lệ hiển thị chuẩn pixel-perfect MMX4 (144p-240p tương ứng)
+            mainCam.backgroundColor = new Color(0.18f, 0.36f, 0.48f); // Bầu trời xanh rừng nhiệt đới
             mainCam.clearFlags = CameraClearFlags.SolidColor;
 
             MMXCameraController camController = mainCam.GetComponent<MMXCameraController>();
             if (camController == null) camController = mainCam.gameObject.AddComponent<MMXCameraController>();
-            // Giới hạn camera bao trùm toàn bộ chiều dài (0 đến 325) và độ sâu (-50 đến 48)
-            camController.SetStageBounds(new Vector2(0f, -48f), new Vector2(325f, 48f));
+            // Giới hạn camera bao trùm toàn bộ 7 khu vực (0 đến 340) và độ sâu (-75 đến 20)
+            camController.SetStageBounds(new Vector2(0f, -72f), new Vector2(335f, 15f));
 
             // =========================================================================
             // 4. HỆ THỐNG PARALLAX SCROLLING ĐA TẦNG (SPRITERS RESOURCE)
@@ -84,23 +98,27 @@ namespace MMX.Setup
             // Tầng 1: Bầu trời & Mây xa (Sky & Clouds) - Sorting Order: -30
             Transform skyFolder = new GameObject("Layer_1_Sky").transform;
             skyFolder.SetParent(parallaxRoot.transform);
-            BuildRepeatingBackground(skyFolder, sSky, new Color(0.35f, 0.60f, 0.85f), -30, new Vector2(-10f, 38f), 180f, 11.25f);
+            BuildRepeatingBackground(skyFolder, sSky, Color.white, -30, new Vector2(0f, 6f), 150f, 32f);
 
             // Tầng 2: Rặng núi xa (Distant Mountains) - Sorting Order: -25
             Transform mountainFolder = new GameObject("Layer_2_Mountains").transform;
             mountainFolder.SetParent(parallaxRoot.transform);
-            BuildRepeatingBackground(mountainFolder, sMountains, new Color(0.15f, 0.38f, 0.28f), -25, new Vector2(-10f, 24f), 180f, 11.25f);
+            BuildRepeatingBackground(mountainFolder, sMountains, Color.white, -25, new Vector2(0f, 0f), 150f, 32f);
 
             // Tầng 3: Đại thung lũng thác nước cuộn chảy (Waterfall Gorge) - Sorting Order: -20
             Transform waterfallFolder = new GameObject("Layer_3_Waterfalls").transform;
             waterfallFolder.SetParent(parallaxRoot.transform);
-            BuildWaterfallBackdrop(waterfallFolder, sWaterfall, sWaterCliff, new Vector2(218f, -25f));
+            BuildWaterfallBackdrop(waterfallFolder, sWaterfall, sWaterCliff, new Vector2(110f, -50f));
 
-            // Tầng 4: Vách gỗ lòng cây đại thụ & Hang nhện (Dark Interior) - Sorting Order: -15
+            // Tầng 4: Vách tối lòng cây đại thụ (Dark Trunk Interior) - Sorting Order: -15
             Transform interiorFolder = new GameObject("Layer_4_DarkInterior").transform;
             interiorFolder.SetParent(parallaxRoot.transform);
-            BuildInteriorBackdrop(interiorFolder, sDarkTrunk, new Vector2(170.4f, -23f), new Vector2(25f, 46f));
-            BuildInteriorBackdrop(interiorFolder, sDarkTrunk, new Vector2(310.2f, -40.5f), new Vector2(22f, 11f));
+            BuildInteriorBackdrop(interiorFolder, sDarkTrunk, new Vector2(64.5f, -28f), new Vector2(25.2f, 48f));
+
+            // Tầng 5: Tán rừng Area 2 & Hang nhện (Deep Canopy Parallax) - Sorting Order: -18
+            Transform canopyFolder = new GameObject("Layer_5_DeepCanopy").transform;
+            canopyFolder.SetParent(parallaxRoot.transform);
+            BuildRepeatingBackground(canopyFolder, sDeepCanopy, Color.white, -18, new Vector2(180f, -38f), 160f, 32f);
 
             ParallaxBackground.ParallaxLayer[] pLayers = new ParallaxBackground.ParallaxLayer[]
             {
@@ -108,506 +126,568 @@ namespace MMX.Setup
                 {
                     layerName = "Sky",
                     layerTransform = skyFolder,
-                    parallaxFactorX = 0.06f,
-                    parallaxFactorY = 0.03f,
+                    parallaxFactorX = 0.05f,
+                    parallaxFactorY = 0.02f,
                     autoScrollX = true,
                     autoScrollSpeedX = 0.20f,
                     infiniteRepeatX = true,
-                    textureUnitSizeX = 22.5f
+                    textureUnitSizeX = 32f
                 },
                 new ParallaxBackground.ParallaxLayer
                 {
                     layerName = "Mountains",
                     layerTransform = mountainFolder,
-                    parallaxFactorX = 0.20f,
+                    parallaxFactorX = 0.18f,
                     parallaxFactorY = 0.08f,
                     autoScrollX = false,
                     infiniteRepeatX = true,
-                    textureUnitSizeX = 22.5f
+                    textureUnitSizeX = 32f
                 },
                 new ParallaxBackground.ParallaxLayer
                 {
                     layerName = "Waterfalls",
                     layerTransform = waterfallFolder,
-                    parallaxFactorX = 0.45f,
+                    parallaxFactorX = 0.40f,
                     parallaxFactorY = 0.20f,
                     autoScrollX = false,
                     infiniteRepeatX = false
+                },
+                new ParallaxBackground.ParallaxLayer
+                {
+                    layerName = "DeepCanopy",
+                    layerTransform = canopyFolder,
+                    parallaxFactorX = 0.35f,
+                    parallaxFactorY = 0.15f,
+                    autoScrollX = false,
+                    infiniteRepeatX = true,
+                    textureUnitSizeX = 32f
                 }
             };
             parallax.Initialize(mainCam, pLayers);
 
             // =========================================================================
-            // 5. TÁI TẠO BẢN ĐỒ WEB SPIDER GỐC (5 KHU VỰC THỰC TẾ - VISUAL TRACKS & COLLIDERS)
+            // 5. TÁI TẠO BẢN ĐỒ WEB SPIDER GỐC (7 KHU VỰC THỰC TẾ - VISUAL TRACKS & COLLIDERS)
             // =========================================================================
             Transform stageFolder = new GameObject("Authentic_WebSpider_Stage").transform;
             stageFolder.SetParent(root.transform);
 
             // -------------------------------------------------------------------------
-            // PHẦN 1: RỪNG TÁN CÂY TRÊN CAO (CANOPY RUN: X = 0 đến 158.25, Y = 0 đến 45.94)
+            // PHẦN 1: RỪNG TÁN CÂY TRÊN CAO (CANOPY RUN: X = 0 đến 68.0, Y = -4.0)
             // -------------------------------------------------------------------------
-            GameObject part1Obj = CreateStageTrackVisual(stageFolder, "Track_Part1_Canopy", sPart1Canopy, new Vector3(79.125f, 22.97f, 0f), new Vector2(158.25f, 45.94f));
+            CreateStageTrackVisual(stageFolder, "Track_Part1_Canopy", sPart1Canopy, new Vector3(34.0f, 0f, 0f));
             Transform p1Col = new GameObject("Colliders_Part1").transform;
-            p1Col.SetParent(part1Obj.transform);
+            p1Col.SetParent(stageFolder);
 
-            // Vách tường chắn bên trái cùng ngăn rớt lùi
-            CreateInvisibleCollider(p1Col, "Wall_Left_Limit", new Vector2(-1.5f, 25f), new Vector2(3f, 40f));
-            // Mặt đất xuất phát (Mossy Start Floor)
-            CreateInvisibleCollider(p1Col, "Canopy_Start_Floor", new Vector2(15f, 21.5f), new Vector2(32f, 2f));
-            // Các cành cây bệ đỡ cao vút và thân gỗ ngã
-            CreateInvisibleCollider(p1Col, "Canopy_Branch_1", new Vector2(38f, 24.5f), new Vector2(12f, 1.2f));
-            CreateInvisibleCollider(p1Col, "Canopy_Branch_2", new Vector2(56f, 28.0f), new Vector2(14f, 1.2f));
-            CreateInvisibleCollider(p1Col, "Canopy_Branch_3", new Vector2(76f, 23.5f), new Vector2(16f, 1.2f));
-            CreateInvisibleCollider(p1Col, "Canopy_Bridge_Chasm", new Vector2(98f, 19.0f), new Vector2(20f, 1.5f));
-            // Tán cây cổ thụ giấu bí mật trên cao
-            CreateInvisibleCollider(p1Col, "Canopy_High_Secret", new Vector2(112f, 32.0f), new Vector2(14f, 1.2f));
-            // Đoạn đường dẫn vào miệng thân cây rỗng
-            CreateInvisibleCollider(p1Col, "Canopy_Trunk_Approach", new Vector2(138f, 16.5f), new Vector2(36f, 2f));
-            // Vách thân cây bao quanh lối vào
-            CreateInvisibleCollider(p1Col, "Trunk_Entrance_Ceiling", new Vector2(150f, 30f), new Vector2(18f, 4f));
-
-            // Dây leo tiền cảnh (Foreground Vines)
-            CreateVinesDecoration(stageFolder, sVines, new Vector3(12f, 26f, 0f), new Vector2(3.5f, 3.5f));
-            CreateVinesDecoration(stageFolder, sVines, new Vector3(45f, 31f, 0f), new Vector2(4f, 4f));
-            CreateVinesDecoration(stageFolder, sVines, new Vector3(88f, 27f, 0f), new Vector2(3.5f, 3.5f));
-            CreateVinesDecoration(stageFolder, sVines, new Vector3(130f, 22f, 0f), new Vector2(4f, 4f));
+            // Mặt đất chính rừng tán cây
+            CreatePlatform(p1Col, new Vector2(0f, -4.5f), new Vector2(58.5f, 1.2f));
+            // Bờ vực vách đá bên trái (chặn không cho đi lùi ra khỏi map)
+            CreateWall(p1Col, new Vector2(-1f, 2f), new Vector2(2f, 16f));
+            // Lối vào hố cây rỗng bên phải (miệng hố: X = 58.5 đến 64.5 để rơi xuống Part 2)
+            CreateWall(p1Col, new Vector2(65f, 2f), new Vector2(2f, 16f));
 
             // -------------------------------------------------------------------------
-            // PHẦN 2: THÂN CÂY ĐẠI THỤ THẲNG ĐỨNG (HOLLOW TRUNK DESCENT: X = 158.25 đến 182.63, Y = -45.94 đến 0)
+            // PHẦN 2: THÂN CÂY RỖNG RƠI XUỐNG (HOLLOW TRUNK SHAFT: X = 56.5 đến 81.5, Y = -4 đến -52)
             // -------------------------------------------------------------------------
-            GameObject part2Obj = CreateStageTrackVisual(stageFolder, "Track_Part2_HollowTrunk", sPart2Trunk, new Vector3(170.44f, -22.97f, 0f), new Vector2(24.38f, 45.94f));
+            CreateStageTrackVisual(stageFolder, "Track_Part2_HollowTrunk", sPart2Trunk, new Vector3(64.5f, -28.0f, 0f));
             Transform p2Col = new GameObject("Colliders_Part2").transform;
-            p2Col.SetParent(part2Obj.transform);
+            p2Col.SetParent(stageFolder);
 
-            // Vách trái thân cây đại thụ (cao từ Y = -46 đến 0) để Wall Slide & Wall Kick
-            CreateInvisibleCollider(p2Col, "Trunk_Left_Wall", new Vector2(158.8f, -23f), new Vector2(2f, 46f));
-            // Vách phải thân cây đại thụ (cao từ Y = -46 đến 0) để Wall Slide & Wall Kick
-            CreateInvisibleCollider(p2Col, "Trunk_Right_Wall", new Vector2(182.0f, -23f), new Vector2(2f, 46f));
+            // Vách trái thân cây (cho phép Wall Slide và Wall Kick)
+            CreateWall(p2Col, new Vector2(56.5f, -28.0f), new Vector2(1.5f, 48.0f));
+            // Vách phải thân cây
+            CreateWall(p2Col, new Vector2(72.5f, -28.0f), new Vector2(1.5f, 48.0f));
 
-            // Các bệ nấm gỗ & cành cây bên trong lòng cây theo bậc zig-zag
-            CreateInvisibleCollider(p2Col, "Trunk_Shelf_1", new Vector2(165f, -6.5f), new Vector2(10f, 1f));
-            CreateInvisibleCollider(p2Col, "Trunk_Shelf_2", new Vector2(175f, -15.5f), new Vector2(10f, 1f));
-            CreateInvisibleCollider(p2Col, "Trunk_Shelf_3", new Vector2(165f, -24.5f), new Vector2(10f, 1f));
-            CreateInvisibleCollider(p2Col, "Trunk_Shelf_4", new Vector2(175f, -33.5f), new Vector2(10f, 1f));
-            CreateInvisibleCollider(p2Col, "Trunk_Shelf_Bottom", new Vector2(168f, -42.5f), new Vector2(14f, 1.2f));
+            // Các bục gỗ zig-zag bên trong thân cây
+            CreatePlatform(p2Col, new Vector2(60f, -14f), new Vector2(6f, 0.8f));
+            CreatePlatform(p2Col, new Vector2(69f, -22f), new Vector2(6f, 0.8f));
+            CreatePlatform(p2Col, new Vector2(60f, -30f), new Vector2(6f, 0.8f));
+            CreatePlatform(p2Col, new Vector2(69f, -38f), new Vector2(6f, 0.8f));
+            CreatePlatform(p2Col, new Vector2(62f, -46f), new Vector2(8f, 0.8f));
+
+            // Phòng bí mật chứa Chân Capsule (Dr. Light Foot Parts) trên góc phải
+            CreatePlatform(p2Col, new Vector2(76f, -9f), new Vector2(7f, 1.0f));
+            CreateWall(p2Col, new Vector2(80f, -4f), new Vector2(1.2f, 10f));
+            CreateCapsuleSecretPod(p2Col, new Vector2(77.5f, -8f));
+
+            // Đáy thân cây nối sang sông thác nước
+            CreatePlatform(p2Col, new Vector2(56.5f, -52.0f), new Vector2(17f, 1.5f));
 
             // -------------------------------------------------------------------------
-            // PHẦN 3: VỰC SÂU THÁC NƯỚC & LÒNG SÔNG ĐÁ (WATERFALL RIVER: X = 182.63 đến 252.94, Y = -45.94 đến -3.94)
+            // PHẦN 3: VƯỢT SÔNG THÁC NƯỚC (WATERFALL RIVER: X = 73.5 đến 146.5, Y = -48 đến -65)
             // -------------------------------------------------------------------------
-            GameObject part3Obj = CreateStageTrackVisual(stageFolder, "Track_Part3_WaterfallRiver", sPart3River, new Vector3(217.78f, -24.94f, 0f), new Vector2(70.31f, 42.0f));
+            CreateStageTrackVisual(stageFolder, "Track_Part3_WaterfallRiver", sPart3River, new Vector3(110.0f, -48.0f, 0f));
             Transform p3Col = new GameObject("Colliders_Part3").transform;
-            p3Col.SetParent(part3Obj.transform);
+            p3Col.SetParent(stageFolder);
 
-            // Bờ đá thác nước lối ra khỏi thân cây
-            CreateInvisibleCollider(p3Col, "River_Exit_Bank", new Vector2(188f, -44f), new Vector2(12f, 2f));
-            // Các tảng đá bệ đỡ vượt dòng thác cuộn
-            CreateInvisibleCollider(p3Col, "River_Rock_Step_1", new Vector2(202f, -42.5f), new Vector2(8f, 1.5f));
-            CreateInvisibleCollider(p3Col, "River_Rock_Step_2", new Vector2(216f, -39.0f), new Vector2(9f, 1.5f));
-            CreateInvisibleCollider(p3Col, "River_Rock_Step_3", new Vector2(230f, -41.5f), new Vector2(9f, 1.5f));
-            CreateInvisibleCollider(p3Col, "River_Far_Bank", new Vector2(246f, -43.5f), new Vector2(16f, 2f));
+            // Đoạn xuất phát từ gốc cây
+            CreatePlatform(p3Col, new Vector2(73.5f, -48.0f), new Vector2(10f, 1.2f));
 
-            // Đáy vực nước (Hazard/Respawn)
-            CreateInvisibleCollider(p3Col, "River_Water_Bed", new Vector2(218f, -48f), new Vector2(68f, 2f));
+            // Các tảng đá và bè gỗ nổi vượt sông
+            CreatePlatform(p3Col, new Vector2(86f, -46.5f), new Vector2(7f, 0.8f));
+            CreatePlatform(p3Col, new Vector2(96f, -45.0f), new Vector2(7f, 0.8f));
+            CreatePlatform(p3Col, new Vector2(106f, -44.5f), new Vector2(7f, 0.8f));
+            CreatePlatform(p3Col, new Vector2(117f, -44.5f), new Vector2(10f, 0.8f));
+
+            // Bậc thác dốc đổ xuống cuối Area 1
+            CreatePlatform(p3Col, new Vector2(129f, -50.0f), new Vector2(6f, 0.8f));
+            CreatePlatform(p3Col, new Vector2(135f, -57.0f), new Vector2(6f, 0.8f));
+            CreatePlatform(p3Col, new Vector2(142f, -65.0f), new Vector2(10f, 1.2f));
+
+            // Cổng dịch chuyển chuyển tiếp sang Area 2 tại cuối sông
+            CreateAreaTransitionPortal(p3Col, new Vector2(145f, -64.0f), new Vector2(165f, -43f));
 
             // -------------------------------------------------------------------------
-            // PHẦN 4: HÀNH LANG CỔNG TRÙM (BOSS CORRIDOR: X = 252.94 đến 300, Y = -45.94 đến -37.69)
+            // PHẦN 4: RỪNG SÂU GỐC CÂY ĐẠI THỤ (AREA 2 START: X = 160.0 đến 207.5, Y = -44)
             // -------------------------------------------------------------------------
-            GameObject part4Obj = CreateStageTrackVisual(stageFolder, "Track_Part4_BossCorridor", sPart4Corridor, new Vector3(276.5f, -41.81f, 0f), new Vector2(47.1f, 8.25f));
+            CreateStageTrackVisual(stageFolder, "Track_Part4_DeepJungleStumps", sPart4Stumps, new Vector3(180.0f, -48.0f, 0f));
             Transform p4Col = new GameObject("Colliders_Part4").transform;
-            p4Col.SetParent(part4Obj.transform);
+            p4Col.SetParent(stageFolder);
 
-            // Mặt đất bằng phẳng dẫn đến cửa Boss
-            CreateInvisibleCollider(p4Col, "Boss_Approach_Floor", new Vector2(276.5f, -44.5f), new Vector2(48f, 2f));
-            CreateInvisibleCollider(p4Col, "Boss_Approach_Ceiling", new Vector2(276.5f, -37.5f), new Vector2(48f, 2f));
-            // Tường cổng Boss bên trên cánh cửa
-            CreateInvisibleCollider(p4Col, "Boss_Door_Header_Wall", new Vector2(299f, -36f), new Vector2(2.5f, 6f));
+            // Bờ rừng Area 2 & các gốc cây cưa khổng lồ
+            CreatePlatform(p4Col, new Vector2(160f, -44.0f), new Vector2(14f, 1.2f));
+            CreatePlatform(p4Col, new Vector2(176f, -42.0f), new Vector2(12f, 1.2f));
+            CreatePlatform(p4Col, new Vector2(190f, -41.0f), new Vector2(16f, 1.2f));
+
+            // Thân gỗ mục có thể bắn phá
+            CreateBreakableLog(p4Col, sBreakableTrunk, new Vector2(188f, -39.5f));
 
             // -------------------------------------------------------------------------
-            // PHẦN 5: ĐẤU TRƯỜNG TRÙM WEB SPIDER (SPIDER LAIR ARENA: X = 300 đến 320.44, Y = -45.94 đến -35.63)
+            // PHẦN 5: LEO TRÈO CÂY NHỆN KHỔNG LỒ (SPIDER TREES: X = 207.5 đến 275.5, Y = -40 đến -22)
             // -------------------------------------------------------------------------
-            GameObject part5Obj = CreateStageTrackVisual(stageFolder, "Track_Part5_BossArena", sPart5Arena, new Vector3(310.22f, -40.78f, 0f), new Vector2(20.44f, 10.31f));
+            CreateStageTrackVisual(stageFolder, "Track_Part5_SpiderTrees", sPart5SpiderTrees, new Vector3(240.0f, -40.0f, 0f));
             Transform p5Col = new GameObject("Colliders_Part5").transform;
-            p5Col.SetParent(part5Obj.transform);
+            p5Col.SetParent(stageFolder);
 
-            // Sàn đấu trường Web Spider
-            CreateInvisibleCollider(p5Col, "Spider_Arena_Floor", new Vector2(310.2f, -44.5f), new Vector2(22f, 2f));
-            // Trần đấu trường
-            CreateInvisibleCollider(p5Col, "Spider_Arena_Ceiling", new Vector2(310.2f, -36.0f), new Vector2(22f, 2f));
-            // Vách tường phải đấu trường
-            CreateInvisibleCollider(p5Col, "Spider_Arena_Right_Wall", new Vector2(320.5f, -40.5f), new Vector2(2f, 10f));
+            // Mặt đất rễ cây dưới đáy
+            CreatePlatform(p5Col, new Vector2(206f, -41.0f), new Vector2(68f, 1.2f));
 
-            // Tơ nhện trang trí đấu trường chính gốc
-            CreateWebDecoration(part5Obj.transform, sWeb, new Vector3(304f, -37f, 0f), new Vector2(4f, 2f));
-            CreateWebDecoration(part5Obj.transform, sWeb, new Vector3(316f, -37f, 0f), new Vector2(4f, 2f));
-            CreateWebDecoration(part5Obj.transform, sWeb, new Vector3(319f, -39f, 0f), new Vector2(2.5f, 2.5f));
+            // Các nhánh cây nhện và cành leo cao
+            CreatePlatform(p5Col, new Vector2(212f, -32.0f), new Vector2(10f, 0.8f));
+            CreatePlatform(p5Col, new Vector2(226f, -24.0f), new Vector2(12f, 0.8f));
+            CreateWall(p5Col, new Vector2(236f, -28.0f), new Vector2(1.2f, 12f)); // Thân cây để trượt/đá tường
+            CreatePlatform(p5Col, new Vector2(242f, -22.0f), new Vector2(14f, 0.8f));
+            CreatePlatform(p5Col, new Vector2(260f, -22.0f), new Vector2(14f, 0.8f));
 
-            // =========================================================================
-            // 6. CỬA PHÒNG BOSS (BOSS SHUTTER) TẠI X = 299 (CỬA CUỐN MMX CHÍNH GỐC)
-            // =========================================================================
-            GameObject doorObj = new GameObject("Boss_Shutter_Door");
-            doorObj.transform.SetParent(root.transform);
-            doorObj.transform.position = new Vector3(299f, -41.25f, 0f);
+            // Mạng nhện trang trí
+            CreateSpiderWebVisual(p5Col, sWeb, new Vector2(230f, -20f));
+            CreateSpiderWebVisual(p5Col, sWeb, new Vector2(250f, -18f));
 
-            GameObject doorMesh = new GameObject("Door_Sprite");
-            doorMesh.transform.SetParent(doorObj.transform);
-            doorMesh.transform.localPosition = Vector3.zero;
-            SpriteRenderer doorSR = doorMesh.AddComponent<SpriteRenderer>();
-            doorSR.sprite = sGate != null ? sGate : CreateSimpleSprite(new Color(0.95f, 0.8f, 0.15f));
-            doorSR.sortingOrder = 5;
-            doorMesh.transform.localScale = new Vector3(1.2f, 4.5f, 1f);
+            // -------------------------------------------------------------------------
+            // PHẦN 6: TIỀN ĐỒN KIM LOẠI DẪN VÀO HANG NHỆN (CAVERN APPROACH: X = 275.5 đến 307.0, Y = -23.5)
+            // -------------------------------------------------------------------------
+            CreateStageTrackVisual(stageFolder, "Track_Part6_CavernApproach", sPart6Cavern, new Vector3(285.0f, -32.0f, 0f));
+            Transform p6Col = new GameObject("Colliders_Part6").transform;
+            p6Col.SetParent(stageFolder);
 
-            BoxCollider2D doorCol = doorObj.AddComponent<BoxCollider2D>();
-            doorCol.size = new Vector2(0.9f, 4.5f);
-            BossDoor bossDoor = doorObj.AddComponent<BossDoor>();
+            // Hành lang kim loại dẫn vào cửa Boss
+            CreatePlatform(p6Col, new Vector2(274f, -23.5f), new Vector2(31f, 1.2f));
+            // Trần hành lang
+            CreatePlatform(p6Col, new Vector2(274f, -15.5f), new Vector2(31f, 1.2f));
 
-            // =========================================================================
-            // 7. TẠO PLAYER (MEGA MAN X) XUẤT PHÁT TẠI KHU VỰC TÁN CÂY (CANOPY)
-            // =========================================================================
-            GameObject player = new GameObject("Player_MegaManX");
-            player.tag = "Player";
-            player.transform.SetParent(root.transform);
-            player.transform.position = new Vector3(3f, 23.5f, 0f); // Bắt đầu trên mặt đất tán cây
+            // Trục thẳng đứng & cầu thang phụ bên dưới
+            CreatePlatform(p6Col, new Vector2(285f, -35.0f), new Vector2(15f, 1.0f));
+            CreateWall(p6Col, new Vector2(284f, -30.0f), new Vector2(1.2f, 14f));
 
-            Rigidbody2D pRb = player.AddComponent<Rigidbody2D>();
-            BoxCollider2D pColBox = player.AddComponent<BoxCollider2D>();
-            pColBox.size = new Vector2(0.85f, 1.6f);
-            pColBox.offset = new Vector2(0f, 0.8f);
+            // -------------------------------------------------------------------------
+            // CỬA SHUTTER GATE (CỬA CHẮN TRÙM WEB SPIDER CHUẨN GỐC)
+            // -------------------------------------------------------------------------
+            GameObject doorObj = new GameObject("Jungle_Boss_Shutter_Gate");
+            doorObj.transform.SetParent(stageFolder);
+            doorObj.transform.position = new Vector3(305.5f, -23.0f, 0f);
 
-            HealthSystem pHealth = player.AddComponent<HealthSystem>();
-            DamageFlash pFlash = player.AddComponent<DamageFlash>();
-            PlayerController2D pController = player.AddComponent<PlayerController2D>();
-            PlayerCombat pCombat = player.AddComponent<PlayerCombat>();
+            GameObject doorVisual = new GameObject("Door_Sprite");
+            doorVisual.transform.SetParent(doorObj.transform);
+            doorVisual.transform.localPosition = Vector3.zero;
+            SpriteRenderer doorSr = doorVisual.AddComponent<SpriteRenderer>();
+            doorSr.sprite = sGate;
+            doorSr.sortingOrder = 10;
 
-            GameObject pVisual = new GameObject("Visual");
-            pVisual.transform.SetParent(player.transform);
-            pVisual.transform.localPosition = Vector3.zero;
-            pVisual.transform.localScale = Vector3.one;
+            BoxCollider2D doorCollider = doorObj.AddComponent<BoxCollider2D>();
+            doorCollider.size = new Vector2(1.0f, 3.5f);
+            doorCollider.offset = new Vector2(0f, 1.75f);
 
-            SpriteRenderer pSR = pVisual.AddComponent<SpriteRenderer>();
-            Sprite xDefaultSprite = Resources.Load<Sprite>("Player/x_idle_0");
-            pSR.sprite = xDefaultSprite != null ? xDefaultSprite : CreateSimpleSprite(new Color(0.1f, 0.5f, 0.95f));
-            pSR.sortingOrder = 10;
+            BossDoor bossDoorComponent = doorObj.AddComponent<BossDoor>();
 
-            PlayerSpriteAnimator pAnim = pVisual.AddComponent<PlayerSpriteAnimator>();
-            pAnim.LoadSpritesFromResourcesIfEmpty();
+            // -------------------------------------------------------------------------
+            // PHẦN 7: ĐẤU TRƯỜNG TRÙM WEB SPIDER (BOSS ARENA: X = 307.0 đến 331.0, Y = -23.5)
+            // -------------------------------------------------------------------------
+            CreateStageTrackVisual(stageFolder, "Track_Part7_BossArena", sPart7Arena, new Vector3(318.0f, -23.5f, 0f));
+            Transform p7Col = new GameObject("Colliders_Part7").transform;
+            p7Col.SetParent(stageFolder);
 
-            camController.SetTarget(player.transform);
+            // Sàn đấu phẳng tuyệt đối trong phòng Boss
+            CreatePlatform(p7Col, new Vector2(305.5f, -23.5f), new Vector2(25.5f, 1.5f));
+            // Trần phòng trùm
+            CreatePlatform(p7Col, new Vector2(305.5f, -11.5f), new Vector2(25.5f, 1.5f));
+            // Tường bên phải phòng Boss
+            CreateWall(p7Col, new Vector2(331.0f, -17.5f), new Vector2(1.5f, 14f));
 
-            // =========================================================================
-            // 8. BỐ TRÍ KẺ ĐỊCH RỪNG RẬM (ENEMIES) DỌC THEO CÁC CUNG ĐƯỜNG
-            // =========================================================================
-            Transform enemiesFolder = new GameObject("Enemies_Jungle").transform;
-            enemiesFolder.SetParent(root.transform);
-
-            // Quái bọ bò trên cành cây tán lá (Canopy Crawlers)
-            CreatePatrolEnemy(enemiesFolder, new Vector3(20f, 22.5f, 0f));
-            CreatePatrolEnemy(enemiesFolder, new Vector3(56f, 29.0f, 0f));
-            CreatePatrolEnemy(enemiesFolder, new Vector3(98f, 20.0f, 0f));
-            CreatePatrolEnemy(enemiesFolder, new Vector3(138f, 17.5f, 0f));
-
-            // Quái ong bay trên khoảng không (Canopy Flying Hornets)
-            CreateFlyingHornet(enemiesFolder, new Vector3(35f, 28f, 0f));
-            CreateFlyingHornet(enemiesFolder, new Vector3(72f, 27f, 0f));
-            CreateFlyingHornet(enemiesFolder, new Vector3(110f, 25f, 0f));
-
-            // Quái bên trong thân cây đại thụ rỗng (Trunk enemies)
-            CreatePatrolEnemy(enemiesFolder, new Vector3(165f, -5.5f, 0f));
-            CreatePatrolEnemy(enemiesFolder, new Vector3(175f, -23.5f, 0f));
-            CreateFlyingHornet(enemiesFolder, new Vector3(170f, -18f, 0f));
-            CreateFlyingHornet(enemiesFolder, new Vector3(170f, -35f, 0f));
-
-            // Quái tại thung lũng thác nước (River enemies)
-            CreatePatrolEnemy(enemiesFolder, new Vector3(202f, -41f, 0f));
-            CreatePatrolEnemy(enemiesFolder, new Vector3(230f, -40f, 0f));
-            CreateFlyingHornet(enemiesFolder, new Vector3(216f, -34f, 0f));
+            // Mạng nhện phủ trần phòng Boss
+            CreateSpiderWebVisual(p7Col, sWeb, new Vector2(312f, -12.5f));
+            CreateSpiderWebVisual(p7Col, sWeb, new Vector2(322f, -12.5f));
 
             // =========================================================================
-            // 9. VẬT PHẨM HỒI MÁU (HEALTH PICKUPS)
+            // 6. KHỞI TẠO BOSS WEB SPIDER VÀ VÙNG KÍCH HOẠT (ENCOUNTER)
             // =========================================================================
-            Transform itemsFolder = new GameObject("Pickups").transform;
-            itemsFolder.SetParent(root.transform);
-            CreateHealthCapsule(itemsFolder, new Vector3(112f, 33.2f, 0f)); // Bình máu giấu trên tán cây cao!
-            CreateHealthCapsule(itemsFolder, new Vector3(165f, -23.3f, 0f)); // Bình máu giấu trong thân cây đại thụ
+            BossController boss = SetupWebSpiderBoss(root.transform, new Vector3(322.0f, -16.0f, 0f));
 
-            // =========================================================================
-            // 10. TRÙM WEB SPIDER (JUNGLE SOVEREIGN)
-            // =========================================================================
-            GameObject bossObj = new GameObject("Boss_WebSpider");
-            bossObj.tag = "Boss";
-            bossObj.transform.SetParent(stageFolder);
-            bossObj.transform.position = new Vector3(312f, -42f, 0f); // Ở giữa đấu trường
+            HealthBarUI bossUI = SetupBossHealthUI(root.transform);
+            if (bossUI != null) bossUI.gameObject.SetActive(false);
 
-            GameObject bVisual = new GameObject("Visual");
-            bVisual.transform.SetParent(bossObj.transform);
-            bVisual.transform.localPosition = Vector3.zero;
-            SpriteRenderer bSR = bVisual.AddComponent<SpriteRenderer>();
-            bSR.sprite = CreateSimpleSprite(new Color(0.12f, 0.58f, 0.35f));
-            bSR.sortingOrder = 10;
-            bVisual.transform.localScale = new Vector3(2.5f, 2.8f, 1f);
-
-            GameObject bEyes = new GameObject("Spider_Eyes");
-            bEyes.transform.SetParent(bVisual.transform);
-            bEyes.transform.localPosition = new Vector3(-0.25f, 0.2f, 0f);
-            SpriteRenderer bEyesSR = bEyes.AddComponent<SpriteRenderer>();
-            bEyesSR.sprite = CreateSimpleSprite(new Color(1f, 0.95f, 0.2f));
-            bEyesSR.sortingOrder = 11;
-            bEyes.transform.localScale = new Vector3(0.4f, 0.3f, 1f);
-
-            BoxCollider2D bCol = bossObj.AddComponent<BoxCollider2D>();
-            bCol.size = new Vector2(2.4f, 2.7f);
-            Rigidbody2D bRb = bossObj.AddComponent<Rigidbody2D>();
-
-            HealthSystem bHealth = bossObj.AddComponent<HealthSystem>();
-            DamageFlash bFlash = bossObj.AddComponent<DamageFlash>();
-            BossController bossController = bossObj.AddComponent<BossController>();
-
-            // =========================================================================
-            // 11. GIAO DIỆN MÁU (HUD CANVAS)
-            // =========================================================================
-            GameObject canvasObj = new GameObject("MMX_HUD_Canvas");
-            canvasObj.transform.SetParent(root.transform);
-            Canvas canvas = canvasObj.AddComponent<Canvas>();
-            canvas.renderMode = RenderMode.ScreenSpaceOverlay;
-            canvasObj.AddComponent<CanvasScaler>();
-            canvasObj.AddComponent<GraphicRaycaster>();
-
-            HealthBarUI playerHealthBar = CreateHealthBarUI(canvasObj.transform, "Player_HealthBar", new Vector2(40f, -60f), new Vector2(0f, 1f), new Color(0.2f, 0.8f, 0.2f), pHealth);
-            HealthBarUI bossHealthBar = CreateHealthBarUI(canvasObj.transform, "Boss_HealthBar", new Vector2(-40f, -60f), new Vector2(1f, 1f), new Color(0.2f, 0.9f, 0.5f), bHealth);
-            bossHealthBar.gameObject.SetActive(false);
-
-            // =========================================================================
-            // 12. BOSS ROOM TRIGGER (TẠI X = 301)
-            // =========================================================================
-            GameObject triggerObj = new GameObject("Boss_Room_Trigger");
-            triggerObj.transform.SetParent(root.transform);
-            triggerObj.transform.position = new Vector3(301f, -41f, 0f);
-
-            BoxCollider2D trigCol = triggerObj.AddComponent<BoxCollider2D>();
-            trigCol.isTrigger = true;
-            trigCol.size = new Vector2(2f, 6f);
+            // Vùng kích hoạt trùm ngay khi người chơi bước qua cửa Shutter Gate (X = 307.5)
+            GameObject triggerObj = new GameObject("Boss_Encounter_Trigger");
+            triggerObj.transform.SetParent(stageFolder);
+            triggerObj.transform.position = new Vector3(307.5f, -21.5f, 0f);
+            BoxCollider2D triggerCol = triggerObj.AddComponent<BoxCollider2D>();
+            triggerCol.isTrigger = true;
+            triggerCol.size = new Vector2(2.0f, 6.0f);
 
             BossRoomTrigger roomTrigger = triggerObj.AddComponent<BossRoomTrigger>();
-            // Khóa camera vào giữa đấu trường Web Spider tại (310.2, -40.5)
-            roomTrigger.Initialize(bossController, bossDoor, camController, bossHealthBar, new Vector2(310.2f, -40.5f), new Vector2(310.2f, -40.5f));
+            // Khóa Camera phòng boss: X cố định ở 318 (tâm phòng), Y cố định ở -19.5
+            Vector2 bossCamLock = new Vector2(318.0f, -19.5f);
+            roomTrigger.Initialize(boss, bossDoorComponent, camController, bossUI, bossCamLock, bossCamLock);
 
-            Debug.Log("<color=green>[MMX4 Web Spider Stage]</color> Đã xây dựng hoàn chỉnh 100% bản đồ Web Spider từ file Spriters-Resource!");
+            // =========================================================================
+            // 7. KHỞI TẠO QUÁI VẬT & NHÂN VẬT MEGA MAN X
+            // =========================================================================
+            SpawnStageEnemies(stageFolder);
+            SetupPlayerCharacter(root.transform, camController, new Vector3(4.0f, 0.0f, 0f));
+
+            Debug.Log("[MMXDemoSetup] Web Spider Authentic Stage built successfully with 7 distinct authentic zones and 100% pixel-sharp Point rendering!");
         }
 
-        private GameObject CreateStageTrackVisual(Transform parent, string name, Sprite sprite, Vector3 centerPos, Vector2 size)
+        // =========================================================================
+        // HÀM TIỆN ÍCH TẠO TRACK VISUAL CHUẨN GỐC
+        // =========================================================================
+        private GameObject CreateStageTrackVisual(Transform parent, string trackName, Sprite sprite, Vector3 worldPosition)
         {
-            GameObject trackObj = new GameObject(name);
-            trackObj.transform.SetParent(parent);
-            trackObj.transform.position = centerPos;
+            GameObject obj = new GameObject(trackName);
+            obj.transform.SetParent(parent);
+            obj.transform.position = worldPosition;
 
-            SpriteRenderer sr = trackObj.AddComponent<SpriteRenderer>();
+            SpriteRenderer sr = obj.AddComponent<SpriteRenderer>();
             sr.sprite = sprite;
-            sr.sortingOrder = 0; // Địa hình màn chơi chính
-            return trackObj;
+            sr.sortingOrder = 0; // Foreground stage layer
+            return obj;
         }
 
-        private void CreateInvisibleCollider(Transform parent, string name, Vector2 pos, Vector2 size)
+        private void CreatePlatform(Transform parent, Vector2 minCorner, Vector2 size)
         {
-            GameObject colObj = new GameObject(name);
-            colObj.transform.SetParent(parent);
-            colObj.transform.position = pos;
+            GameObject plat = new GameObject("Floor_" + minCorner.x.ToString("F0"));
+            plat.transform.SetParent(parent);
+            plat.transform.position = new Vector3(minCorner.x + size.x * 0.5f, minCorner.y + size.y * 0.5f, 0f);
 
-            BoxCollider2D col = colObj.AddComponent<BoxCollider2D>();
-            col.size = size;
+            BoxCollider2D box = plat.AddComponent<BoxCollider2D>();
+            box.size = size;
+
+            int groundLayer = LayerMask.NameToLayer("Ground");
+            if (groundLayer != -1) plat.layer = groundLayer;
         }
 
-        private void BuildRepeatingBackground(Transform parent, Sprite sprite, Color fallbackColor, int sortingOrder, Vector2 startPos, float totalWidth, float stepX)
+        private void CreateWall(Transform parent, Vector2 center, Vector2 size)
         {
-            float curX = startPos.x;
-            int index = 0;
-            while (curX < startPos.x + totalWidth)
-            {
-                GameObject seg = new GameObject($"BgSegment_{index}");
-                seg.transform.SetParent(parent);
-                seg.transform.position = new Vector3(curX, startPos.y, 0f);
+            GameObject wall = new GameObject("Wall_" + center.x.ToString("F0"));
+            wall.transform.SetParent(parent);
+            wall.transform.position = new Vector3(center.x, center.y, 0f);
 
-                SpriteRenderer sr = seg.AddComponent<SpriteRenderer>();
-                sr.sprite = sprite != null ? sprite : CreateSimpleSprite(fallbackColor);
-                sr.sortingOrder = sortingOrder;
+            BoxCollider2D box = wall.AddComponent<BoxCollider2D>();
+            box.size = size;
 
-                curX += stepX;
-                index++;
-            }
+            int groundLayer = LayerMask.NameToLayer("Ground");
+            if (groundLayer != -1) wall.layer = groundLayer;
         }
 
-        private void BuildWaterfallBackdrop(Transform parent, Sprite sWf, Sprite sCliff, Vector2 centerPos)
+        private void CreateSpiderWebVisual(Transform parent, Sprite webSprite, Vector2 pos)
         {
-            if (sCliff != null)
-            {
-                GameObject cliffObj = new GameObject("Waterfall_Cliff_Gorge");
-                cliffObj.transform.SetParent(parent);
-                cliffObj.transform.position = new Vector3(centerPos.x, centerPos.y, 0f);
-                SpriteRenderer srCliff = cliffObj.AddComponent<SpriteRenderer>();
-                srCliff.sprite = sCliff;
-                srCliff.sortingOrder = -22;
-                cliffObj.transform.localScale = new Vector3(2.5f, 2.5f, 1f);
-            }
-
-            if (sWf != null)
-            {
-                for (int i = -1; i <= 1; i++)
-                {
-                    GameObject wfObj = new GameObject($"Waterfall_Cascade_{i}");
-                    wfObj.transform.SetParent(parent);
-                    wfObj.transform.position = new Vector3(centerPos.x + i * 14f, centerPos.y - 2f, 0f);
-                    SpriteRenderer srWf = wfObj.AddComponent<SpriteRenderer>();
-                    srWf.sprite = sWf;
-                    srWf.sortingOrder = -20;
-                    wfObj.transform.localScale = new Vector3(2.5f, 2.5f, 1f);
-                }
-            }
-        }
-
-        private void BuildInteriorBackdrop(Transform parent, Sprite sInterior, Vector2 centerPos, Vector2 size)
-        {
-            GameObject bgObj = new GameObject("Interior_DarkTrunk_Backdrop");
-            bgObj.transform.SetParent(parent);
-            bgObj.transform.position = new Vector3(centerPos.x, centerPos.y, 0f);
-
-            SpriteRenderer sr = bgObj.AddComponent<SpriteRenderer>();
-            sr.sprite = sInterior != null ? sInterior : CreateSimpleSprite(new Color(0.10f, 0.08f, 0.06f));
-            sr.color = new Color(0.85f, 0.85f, 0.85f, 0.95f);
-            sr.sortingOrder = -15;
-            bgObj.transform.localScale = new Vector3(size.x / 4f, size.y / 7f, 1f);
-        }
-
-        private void CreateVinesDecoration(Transform parent, Sprite sVines, Vector3 pos, Vector2 size)
-        {
-            GameObject vineObj = new GameObject("Foreground_HangingVines");
-            vineObj.transform.SetParent(parent);
-            vineObj.transform.position = pos;
-
-            SpriteRenderer sr = vineObj.AddComponent<SpriteRenderer>();
-            sr.sprite = sVines != null ? sVines : CreateSimpleSprite(new Color(0.18f, 0.55f, 0.28f, 0.85f));
-            sr.sortingOrder = 15; // Tiền cảnh (vượt qua trước nhân vật)
-            vineObj.transform.localScale = new Vector3(size.x, size.y, 1f);
-        }
-
-        private void CreateWebDecoration(Transform parent, Sprite sWeb, Vector3 pos, Vector2 size)
-        {
-            GameObject web = new GameObject("Ceiling_SpiderWeb");
-            web.transform.SetParent(parent);
-            web.transform.position = pos;
-
-            SpriteRenderer sr = web.AddComponent<SpriteRenderer>();
-            sr.sprite = sWeb != null ? sWeb : CreateSimpleSprite(new Color(0.9f, 0.95f, 0.92f, 0.6f));
-            sr.color = new Color(1f, 1f, 1f, 0.75f);
-            sr.sortingOrder = 2;
-            web.transform.localScale = new Vector3(size.x, size.y, 1f);
-        }
-
-        private void CreatePatrolEnemy(Transform parent, Vector3 pos)
-        {
-            GameObject enemy = new GameObject("Enemy_SpikeCrawler");
-            enemy.tag = "Enemy";
-            enemy.transform.SetParent(parent);
-            enemy.transform.position = pos;
-
-            SpriteRenderer sr = enemy.AddComponent<SpriteRenderer>();
-            sr.sprite = CreateSimpleSprite(new Color(0.75f, 0.25f, 0.2f));
+            if (webSprite == null) return;
+            GameObject webObj = new GameObject("SpiderWeb_Deco");
+            webObj.transform.SetParent(parent);
+            webObj.transform.position = new Vector3(pos.x, pos.y, 0f);
+            SpriteRenderer sr = webObj.AddComponent<SpriteRenderer>();
+            sr.sprite = webSprite;
             sr.sortingOrder = 5;
-            enemy.transform.localScale = new Vector3(1.2f, 1.2f, 1f);
-
-            BoxCollider2D col = enemy.AddComponent<BoxCollider2D>();
-            col.size = Vector2.one;
-
-            Rigidbody2D rb = enemy.AddComponent<Rigidbody2D>();
-            HealthSystem eHealth = enemy.AddComponent<HealthSystem>();
-            eHealth.SetMaxHealth(3, true);
-            eHealth.SetInvulnerabilityDuration(0f);
-            enemy.AddComponent<DamageFlash>();
-            enemy.AddComponent<BasicPatrolEnemy>();
         }
 
-        private void CreateFlyingHornet(Transform parent, Vector3 pos)
+        private void CreateBreakableLog(Transform parent, Sprite logSprite, Vector2 pos)
         {
-            GameObject hornet = new GameObject("Enemy_FlyingHornet");
-            hornet.tag = "Enemy";
+            GameObject logObj = new GameObject("Breakable_Trunk_Log");
+            logObj.transform.SetParent(parent);
+            logObj.transform.position = new Vector3(pos.x, pos.y, 0f);
+
+            if (logSprite != null)
+            {
+                SpriteRenderer sr = logObj.AddComponent<SpriteRenderer>();
+                sr.sprite = logSprite;
+                sr.sortingOrder = 2;
+            }
+
+            BoxCollider2D col = logObj.AddComponent<BoxCollider2D>();
+            col.size = new Vector2(1.0f, 2.3f);
+            col.offset = new Vector2(0f, 1.15f);
+
+            int groundLayer = LayerMask.NameToLayer("Ground");
+            if (groundLayer != -1) logObj.layer = groundLayer;
+        }
+
+        private void CreateCapsuleSecretPod(Transform parent, Vector2 pos)
+        {
+            GameObject pod = new GameObject("DrLight_FootCapsule");
+            pod.transform.SetParent(parent);
+            pod.transform.position = new Vector3(pos.x, pos.y, 0f);
+
+            // Bục Capsule phát sáng
+            SpriteRenderer sr = pod.AddComponent<SpriteRenderer>();
+            sr.sprite = Resources.Load<Sprite>("Environment/Jungle/Terrain/Jungle_Hollow_Tree_Platform");
+            sr.color = new Color(0.3f, 0.9f, 1f, 0.9f);
+            sr.sortingOrder = 3;
+
+            BoxCollider2D col = pod.AddComponent<BoxCollider2D>();
+            col.isTrigger = true;
+            col.size = new Vector2(2f, 3f);
+        }
+
+        private void CreateAreaTransitionPortal(Transform parent, Vector2 portalPos, Vector2 targetSpawnPos)
+        {
+            GameObject portal = new GameObject("Area_Transition_Portal");
+            portal.transform.SetParent(parent);
+            portal.transform.position = new Vector3(portalPos.x, portalPos.y, 0f);
+
+            BoxCollider2D trigger = portal.AddComponent<BoxCollider2D>();
+            trigger.isTrigger = true;
+            trigger.size = new Vector2(2.5f, 4f);
+
+            AreaTransition transitionScript = portal.AddComponent<AreaTransition>();
+            transitionScript.targetSpawn = targetSpawnPos;
+        }
+
+        // =========================================================================
+        // HÀM XÂY DỰNG PARALLAX
+        // =========================================================================
+        private void BuildRepeatingBackground(Transform parent, Sprite sprite, Color tint, int sortingOrder, Vector2 startPos, float totalWidth, float stepX)
+        {
+            if (sprite == null) return;
+            int count = Mathf.CeilToInt(totalWidth / stepX) + 2;
+            for (int i = 0; i < count; i++)
+            {
+                GameObject tile = new GameObject("BG_Tile_" + i);
+                tile.transform.SetParent(parent);
+                tile.transform.position = new Vector3(startPos.x + i * stepX, startPos.y, 0f);
+
+                SpriteRenderer sr = tile.AddComponent<SpriteRenderer>();
+                sr.sprite = sprite;
+                sr.color = tint;
+                sr.sortingOrder = sortingOrder;
+            }
+        }
+
+        private void BuildWaterfallBackdrop(Transform parent, Sprite wfSprite, Sprite cliffSprite, Vector2 centerPos)
+        {
+            if (wfSprite != null)
+            {
+                GameObject wfObj = new GameObject("Waterfall_Cascade");
+                wfObj.transform.SetParent(parent);
+                wfObj.transform.position = new Vector3(centerPos.x, centerPos.y, 0f);
+
+                SpriteRenderer sr = wfObj.AddComponent<SpriteRenderer>();
+                sr.sprite = wfSprite;
+                sr.sortingOrder = -20;
+            }
+
+            if (cliffSprite != null)
+            {
+                GameObject cliffObj = new GameObject("Waterfall_Cliff_Base");
+                cliffObj.transform.SetParent(parent);
+                cliffObj.transform.position = new Vector3(centerPos.x, centerPos.y - 12f, 0f);
+
+                SpriteRenderer sr = cliffObj.AddComponent<SpriteRenderer>();
+                sr.sprite = cliffSprite;
+                sr.sortingOrder = -19;
+            }
+        }
+
+        private void BuildInteriorBackdrop(Transform parent, Sprite trunkSprite, Vector2 centerPos, Vector2 size)
+        {
+            GameObject trunkObj = new GameObject("Dark_Trunk_Interior");
+            trunkObj.transform.SetParent(parent);
+            trunkObj.transform.position = new Vector3(centerPos.x, centerPos.y, 0f);
+
+            SpriteRenderer sr = trunkObj.AddComponent<SpriteRenderer>();
+            sr.sprite = trunkSprite;
+            sr.color = new Color(0.12f, 0.08f, 0.05f, 0.95f); // Gỗ tối màu lòng thân cây
+            sr.sortingOrder = -15;
+        }
+
+        // =========================================================================
+        // KHỞI TẠO BOSS & UI & PLAYER
+        // =========================================================================
+        private BossController SetupWebSpiderBoss(Transform parent, Vector3 spawnPos)
+        {
+            GameObject bossObj = new GameObject("Boss_WebSpider");
+            bossObj.transform.SetParent(parent);
+            bossObj.transform.position = spawnPos;
+
+            SpriteRenderer sr = bossObj.AddComponent<SpriteRenderer>();
+            sr.sortingOrder = 2;
+
+            BoxCollider2D col = bossObj.AddComponent<BoxCollider2D>();
+            col.size = new Vector2(2.4f, 2.2f);
+
+            Rigidbody2D rb = bossObj.AddComponent<Rigidbody2D>();
+            rb.gravityScale = 0f; // Nhện đu dây treo trần
+            rb.freezeRotation = true;
+
+            bossObj.AddComponent<HealthSystem>();
+            BossController bossController = bossObj.AddComponent<BossController>();
+            bossObj.tag = "Enemy";
+
+            return bossController;
+        }
+
+        private HealthBarUI SetupBossHealthUI(Transform parent)
+        {
+            Canvas canvas = FindFirstObjectByType<Canvas>();
+            if (canvas == null)
+            {
+                GameObject cObj = new GameObject("MMX_UI_Canvas");
+                cObj.transform.SetParent(parent);
+                canvas = cObj.AddComponent<Canvas>();
+                canvas.renderMode = RenderMode.ScreenSpaceOverlay;
+                cObj.AddComponent<CanvasScaler>();
+                cObj.AddComponent<GraphicRaycaster>();
+            }
+
+            GameObject barObj = new GameObject("BossHealthBar");
+            barObj.transform.SetParent(canvas.transform, false);
+
+            RectTransform rt = barObj.AddComponent<RectTransform>();
+            rt.anchorMin = new Vector2(0.95f, 0.35f);
+            rt.anchorMax = new Vector2(0.98f, 0.85f);
+            rt.anchoredPosition = Vector2.zero;
+
+            Image bgImg = barObj.AddComponent<Image>();
+            bgImg.color = new Color(0.05f, 0.05f, 0.05f, 0.85f);
+
+            GameObject fillObj = new GameObject("Fill");
+            fillObj.transform.SetParent(barObj.transform, false);
+            RectTransform fillRt = fillObj.AddComponent<RectTransform>();
+            fillRt.anchorMin = Vector2.zero;
+            fillRt.anchorMax = Vector2.one;
+
+            Image fillImg = fillObj.AddComponent<Image>();
+            fillImg.type = Image.Type.Filled;
+            fillImg.fillMethod = Image.FillMethod.Vertical;
+            fillImg.color = new Color(0.95f, 0.75f, 0.1f);
+
+            HealthBarUI barUI = barObj.AddComponent<HealthBarUI>();
+            return barUI;
+        }
+
+        private void SpawnStageEnemies(Transform stageFolder)
+        {
+            // Quái ong rừng Area 1 (Hornet)
+            SpawnHornet(stageFolder, new Vector3(22f, 2.5f, 0f));
+            SpawnHornet(stageFolder, new Vector3(45f, 2.0f, 0f));
+            SpawnHornet(stageFolder, new Vector3(92f, -42.0f, 0f));
+            SpawnHornet(stageFolder, new Vector3(112f, -40.0f, 0f));
+
+            // Quái tuần tra Area 2
+            SpawnPatrolEnemy(stageFolder, new Vector3(172f, -40.5f, 0f));
+            SpawnPatrolEnemy(stageFolder, new Vector3(196f, -39.5f, 0f));
+            SpawnPatrolEnemy(stageFolder, new Vector3(220f, -39.5f, 0f));
+            SpawnPatrolEnemy(stageFolder, new Vector3(248f, -20.5f, 0f));
+        }
+
+        private void SpawnHornet(Transform parent, Vector3 pos)
+        {
+            GameObject hornet = new GameObject("Enemy_Hornet");
             hornet.transform.SetParent(parent);
             hornet.transform.position = pos;
+            hornet.tag = "Enemy";
 
             SpriteRenderer sr = hornet.AddComponent<SpriteRenderer>();
-            sr.sprite = CreateSimpleSprite(new Color(0.95f, 0.8f, 0.15f));
-            sr.sortingOrder = 5;
-            hornet.transform.localScale = new Vector3(1.1f, 0.9f, 1f);
+            sr.color = new Color(0.9f, 0.8f, 0.2f);
+            sr.sortingOrder = 1;
 
             CircleCollider2D col = hornet.AddComponent<CircleCollider2D>();
             col.radius = 0.5f;
 
-            HealthSystem hHealth = hornet.AddComponent<HealthSystem>();
-            hHealth.SetMaxHealth(2, true);
-            hHealth.SetInvulnerabilityDuration(0f);
-            hornet.AddComponent<DamageFlash>();
+            Rigidbody2D rb = hornet.AddComponent<Rigidbody2D>();
+            rb.gravityScale = 0f;
+
+            hornet.AddComponent<HealthSystem>();
             hornet.AddComponent<FlyingHornetEnemy>();
         }
 
-        private void CreateHealthCapsule(Transform parent, Vector3 pos)
+        private void SpawnPatrolEnemy(Transform parent, Vector3 pos)
         {
-            GameObject capsule = new GameObject("Item_HealthCapsule");
-            capsule.transform.SetParent(parent);
-            capsule.transform.position = pos;
+            GameObject crawler = new GameObject("Enemy_Crawler");
+            crawler.transform.SetParent(parent);
+            crawler.transform.position = pos;
+            crawler.tag = "Enemy";
 
-            SpriteRenderer sr = capsule.AddComponent<SpriteRenderer>();
-            sr.sprite = CreateSimpleSprite(new Color(0.2f, 0.95f, 0.3f));
-            sr.sortingOrder = 6;
-            capsule.transform.localScale = new Vector3(0.8f, 1.0f, 1f);
+            SpriteRenderer sr = crawler.AddComponent<SpriteRenderer>();
+            sr.color = new Color(0.8f, 0.2f, 0.2f);
+            sr.sortingOrder = 1;
 
-            BoxCollider2D col = capsule.AddComponent<BoxCollider2D>();
-            col.isTrigger = true;
-            col.size = Vector2.one;
+            BoxCollider2D col = crawler.AddComponent<BoxCollider2D>();
+            col.size = new Vector2(0.9f, 0.8f);
 
-            capsule.AddComponent<HealthPickup>();
+            Rigidbody2D rb = crawler.AddComponent<Rigidbody2D>();
+            rb.freezeRotation = true;
+
+            crawler.AddComponent<HealthSystem>();
+            crawler.AddComponent<BasicPatrolEnemy>();
         }
 
-        private HealthBarUI CreateHealthBarUI(Transform canvas, string name, Vector2 anchoredPos, Vector2 anchor, Color fillColor, HealthSystem health)
+        private void SetupPlayerCharacter(Transform parent, MMXCameraController cam, Vector3 spawnPos)
         {
-            GameObject barRoot = new GameObject(name);
-            barRoot.transform.SetParent(canvas, false);
-            RectTransform rt = barRoot.AddComponent<RectTransform>();
-            rt.anchorMin = anchor;
-            rt.anchorMax = anchor;
-            rt.pivot = anchor;
-            rt.anchoredPosition = anchoredPos;
-            rt.sizeDelta = new Vector2(24f, 180f);
+            GameObject existingPlayer = GameObject.FindGameObjectWithTag("Player");
+            if (existingPlayer != null)
+            {
+                existingPlayer.transform.position = spawnPos;
+                if (cam != null) cam.SetTarget(existingPlayer.transform);
+                return;
+            }
 
-            Image bg = barRoot.AddComponent<Image>();
-            bg.color = new Color(0.1f, 0.1f, 0.1f, 0.85f);
+            GameObject player = new GameObject("Megaman_X");
+            player.transform.SetParent(parent);
+            player.transform.position = spawnPos;
+            player.tag = "Player";
 
-            GameObject fillObj = new GameObject("Fill");
-            fillObj.transform.SetParent(barRoot.transform, false);
-            RectTransform fillRt = fillObj.AddComponent<RectTransform>();
-            fillRt.anchorMin = Vector2.zero;
-            fillRt.anchorMax = Vector2.one;
-            fillRt.sizeDelta = new Vector2(-4f, -4f);
+            SpriteRenderer sr = player.AddComponent<SpriteRenderer>();
+            sr.sortingOrder = 5;
 
-            Image fillImg = fillObj.AddComponent<Image>();
-            fillImg.color = fillColor;
-            fillImg.type = Image.Type.Filled;
-            fillImg.fillMethod = Image.FillMethod.Vertical;
-            fillImg.fillOrigin = (int)Image.OriginVertical.Bottom;
-            fillImg.fillAmount = 1f;
+            BoxCollider2D col = player.AddComponent<BoxCollider2D>();
+            col.size = new Vector2(0.8f, 1.4f);
+            col.offset = new Vector2(0f, 0.7f);
 
-            HealthBarUI barUI = barRoot.AddComponent<HealthBarUI>();
-            var field = typeof(HealthBarUI).GetField("fillImage", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
-            if (field != null) field.SetValue(barUI, fillImg);
+            Rigidbody2D rb = player.AddComponent<Rigidbody2D>();
+            rb.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
+            rb.freezeRotation = true;
+            rb.gravityScale = 3.5f;
 
-            if (health != null) barUI.Initialize(health);
+            player.AddComponent<HealthSystem>();
+            player.AddComponent<PlayerController2D>();
+            player.AddComponent<PlayerCombat>();
+            player.AddComponent<PlayerSpriteAnimator>();
 
-            return barUI;
+            if (cam != null) cam.SetTarget(player.transform);
         }
+    }
 
-        private Sprite CreateSimpleSprite(Color color)
+    /// <summary>
+    /// Cổng dịch chuyển chuyển tiếp Area 1 sang Area 2
+    /// </summary>
+    public class AreaTransition : MonoBehaviour
+    {
+        public Vector2 targetSpawn;
+
+        private void OnTriggerEnter2D(Collider2D other)
         {
-            Texture2D tex = new Texture2D(32, 32);
-            Color[] pixels = new Color[32 * 32];
-            for (int i = 0; i < pixels.Length; i++) pixels[i] = color;
-            tex.SetPixels(pixels);
-            tex.Apply();
-            return Sprite.Create(tex, new Rect(0, 0, 32, 32), new Vector2(0.5f, 0.5f), 32f);
+            if (other.CompareTag("Player"))
+            {
+                other.transform.position = new Vector3(targetSpawn.x, targetSpawn.y, other.transform.position.z);
+            }
         }
     }
 }

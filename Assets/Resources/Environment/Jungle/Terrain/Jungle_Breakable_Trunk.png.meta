@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 96e61fc7d35329b19f9a846f864e1d2a
+guid: e04de5e9de764edb9480cd5c01398213
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -95,23 +95,6 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  spriteSheet:
-    serializedVersion: 2
-    sprites: []
-    outline: []
-    customData: 
-    physicsShape: []
-    bones: []
-    spriteID: 96e61fc7d35329b19f9a846f864e1d2a
-    internalID: 0
-    vertices: []
-    indices: 
-    edges: []
-    weights: []
-    secondaryTextures: []
-    nameFileIdTable: {}
-  mipmapLimitGroupName: 
-  pSDRemoveMatte: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 
