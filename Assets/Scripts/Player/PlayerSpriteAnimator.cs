@@ -162,7 +162,7 @@ namespace MMX.Player
                     {
                         return GetAnimatedSprite(jumpShootSprites, 10f, true);
                     }
-                    float velY = rb != null ? rb.velocity.y : 0f;
+                    float velY = rb != null ? rb.linearVelocity.y : 0f;
                     if (velY > 2.5f)
                     {
                         return jumpRiseSprite != null ? jumpRiseSprite : jumpTakeoffSprite;
